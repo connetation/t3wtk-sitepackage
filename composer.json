@@ -1,6 +1,5 @@
 {
     "name": "conn/sitepackage",
-    "version": "1.0.0",
     "description": "Connetation Sitepackage – site-specific extension built on conn/base for TYPO3 LTS 14",
     "type": "typo3-cms-extension",
     "license": "GPL-2.0-or-later",
