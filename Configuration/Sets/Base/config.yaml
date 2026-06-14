@@ -1,3 +1,5 @@
-name: conn/base
-label: 'Base'
+name: conn/sitepackage
+label: 'Sitepackage'
+dependencies:
+  - conn/base
 hidden: true
