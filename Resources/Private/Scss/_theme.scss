@@ -1,0 +1,162 @@
+// ════════════════════════════════════════════════════════════════
+// Connetation Sitepackage – Theme Override Control Panel
+// ════════════════════════════════════════════════════════════════
+//
+// All CSS custom properties from conn/base and conn/elements are
+// listed here, grouped by category. Uncomment any value to override
+// the default set in conn_base/main.css or a component CSS file.
+//
+// Load order on the page:
+//   1. EXT:conn_base/Resources/Public/Css/main.css   (base tokens + Bootstrap)
+//   2. EXT:conn_elements/.../component.css           (per-element, via f:asset.css)
+//   3. EXT:conn_sitepackage/Resources/Public/Css/main.css  ← THIS FILE
+//
+// Because this file loads last, any value set here wins.
+// ════════════════════════════════════════════════════════════════
+
+
+// ── A. Theme-invariant tokens ────────────────────────────────
+// Apply in both light and dark modes.
+// Defined in conn_base theme/_light.scss and conn_elements _tokens.scss.
+//
+// :root {
+//     --conn-accent:       #6366f1;     // Main brand / interactive colour (indigo)
+//     --conn-accent-hover: #4f52d4;     // Darkened accent for hover states
+//     --conn-radius:       0.75rem;     // Global border-radius used by cards & components
+//     --conn-transition:   0.2s ease-in-out;
+// }
+
+
+// ── B. Light mode overrides ──────────────────────────────────
+// conn_base defines these in [data-bs-theme="light"] + :root:not([data-bs-theme="dark"]).
+
+// [data-bs-theme="light"],
+// :root:not([data-bs-theme="dark"]) {
+//
+//     // ── Surfaces ──────────────────────────────
+//     --conn-bg:             #f4f5ff;              // Page / body background
+//     --conn-surface:        #ffffff;              // Card / panel background
+//     --conn-surface-alt:    #f1f2ff;              // Tinted surface variant
+//     --conn-surface-raised: #ffffff;              // Elevated surface (modals, popovers)
+//     --conn-surface-hover:  rgba(99, 102, 241, 0.1);
+//
+//     // ── Navigation & Footer ────────────────────
+//     --conn-nav-bg:    #ffffff;
+//     --conn-footer-bg: #ffffff;
+//
+//     // ── Borders ───────────────────────────────
+//     --conn-border:        rgba(99, 102, 241, 0.12);
+//     --conn-border-strong: rgba(99, 102, 241, 0.28);
+//
+//     // ── Text ──────────────────────────────────
+//     --conn-text:       #1e1e3f;
+//     --conn-text-muted: #6b7280;
+//
+//     // ── Accent soft / glow ────────────────────
+//     --conn-accent-soft: rgba(99, 102, 241, 0.1);
+//     --conn-accent-glow: rgba(99, 102, 241, 0.2);
+//
+//     // ── Shadows ───────────────────────────────
+//     --conn-shadow:       0 4px 24px rgb(99 102 241 / 15%);
+//     --conn-shadow-card:  0 1px 4px rgb(0 0 0 / 6%);
+//     --conn-shadow-hover: 0 8px 32px rgb(99 102 241 / 22%);
+//
+//     // ── Bootstrap CSS-var overrides ───────────
+//     --bs-body-bg:       #f4f5ff;
+//     --bs-heading-color: #0a0a0a;
+// }
+
+
+// ── C. Dark mode overrides ───────────────────────────────────
+// conn_base defines these in [data-bs-theme="dark"].
+
+// [data-bs-theme="dark"] {
+//
+//     // ── Surfaces ──────────────────────────────
+//     --conn-bg:             #0b0b1a;
+//     --conn-surface:        #12122a;
+//     --conn-surface-alt:    #1a1a38;
+//     --conn-surface-raised: #1e1e42;
+//     --conn-surface-hover:  rgba(255, 255, 255, 0.07);
+//
+//     // ── Navigation & Footer ────────────────────
+//     --conn-nav-bg:    #12122a;
+//     --conn-footer-bg: #12122a;
+//
+//     // ── Borders ───────────────────────────────
+//     --conn-border:        rgba(255, 255, 255, 0.08);
+//     --conn-border-strong: rgba(255, 255, 255, 0.15);
+//
+//     // ── Text ──────────────────────────────────
+//     --conn-text:       #e2e2ff;
+//     --conn-text-muted: #8b8bcd;
+//
+//     // ── Accent soft / glow ────────────────────
+//     --conn-accent-soft: rgba(99, 102, 241, 0.15);
+//     --conn-accent-glow: rgba(99, 102, 241, 0.3);
+//
+//     // ── Shadows ───────────────────────────────
+//     --conn-shadow:       0 4px 24px rgb(0 0 0 / 40%);
+//     --conn-shadow-card:  0 1px 4px rgb(0 0 0 / 25%);
+//     --conn-shadow-hover: 0 8px 32px rgb(99 102 241 / 28%);
+//
+//     // ── Bootstrap CSS-var overrides ───────────
+//     --bs-body-bg:       #0b0b1a;
+//     --bs-heading-color: #fafafa;
+// }
+
+
+// ── D. conn/base – Navigation ────────────────────────────────
+// Defined in conn_base _navigation.scss.
+
+// :root {
+//     --conn-navbar-height: 64px;  // Used to offset content for fixed navbars
+// }
+
+
+// ── E. conn/elements – Badge tokens ─────────────────────────
+// Status badge colours used by the Dashboard content element.
+// Defined in conn_elements Shared/_tokens.scss.
+
+// [data-bs-theme="light"],
+// :root:not([data-bs-theme="dark"]) {
+//     --conn-badge-active-bg:            #dcfce7;
+//     --conn-badge-active-color:         #15803d;
+//     --conn-badge-active-border:        #86efac;
+//     --conn-badge-in_progress-bg:       rgba(99, 102, 241, 0.1);
+//     --conn-badge-in_progress-color:    #4f52d4;
+//     --conn-badge-in_progress-border:   rgba(99, 102, 241, 0.3);
+//     --conn-badge-coming_soon-bg:       #cffafe;
+//     --conn-badge-coming_soon-color:    #0e7490;
+//     --conn-badge-coming_soon-border:   #67e8f9;
+//     --conn-badge-inactive-bg:          #f3f4f6;
+//     --conn-badge-inactive-color:       #6b7280;
+//     --conn-badge-inactive-border:      #d1d5db;
+//     --conn-badge-deprecated-bg:        #ffedd5;
+//     --conn-badge-deprecated-color:     #c2410c;
+//     --conn-badge-deprecated-border:    #fed7aa;
+//     --conn-badge-archived-bg:          #fef3c7;
+//     --conn-badge-archived-color:       #92400e;
+//     --conn-badge-archived-border:      #fcd34d;
+// }
+
+// [data-bs-theme="dark"] {
+//     --conn-badge-active-bg:            rgb(21 128 61 / 20%);
+//     --conn-badge-active-color:         #86efac;
+//     --conn-badge-active-border:        rgb(21 128 61 / 40%);
+//     --conn-badge-in_progress-bg:       rgba(99, 102, 241, 0.15);
+//     --conn-badge-in_progress-color:    #a5b4fc;
+//     --conn-badge-in_progress-border:   rgba(99, 102, 241, 0.35);
+//     --conn-badge-coming_soon-bg:       rgb(14 116 144 / 20%);
+//     --conn-badge-coming_soon-color:    #67e8f9;
+//     --conn-badge-coming_soon-border:   rgb(14 116 144 / 40%);
+//     --conn-badge-inactive-bg:          rgb(107 114 128 / 20%);
+//     --conn-badge-inactive-color:       #9ca3af;
+//     --conn-badge-inactive-border:      rgb(107 114 128 / 30%);
+//     --conn-badge-deprecated-bg:        rgb(194 65 12 / 20%);
+//     --conn-badge-deprecated-color:     #fb923c;
+//     --conn-badge-deprecated-border:    rgb(194 65 12 / 40%);
+//     --conn-badge-archived-bg:          rgb(146 64 14 / 20%);
+//     --conn-badge-archived-color:       #fbbf24;
+//     --conn-badge-archived-border:      rgb(146 64 14 / 40%);
+// }

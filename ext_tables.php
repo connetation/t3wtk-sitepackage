@@ -4,7 +4,5 @@ declare(strict_types=1);
 
 defined('TYPO3') or die();
 
-// Register backend layouts
-$GLOBALS['TYPO3_CONF_VARS']['BE']['defaultPageTSconfig'] ??= '';
-$GLOBALS['TYPO3_CONF_VARS']['BE']['defaultPageTSconfig'] .=
-    '@import "EXT:conn_base/Configuration/TsConfig/Page/BackendLayouts.tsconfig"';
+// BackendLayouts.tsconfig is already loaded by EXT:conn_base/ext_tables.php.
+// Add site-specific TsConfig registrations here if needed.

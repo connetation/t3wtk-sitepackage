@@ -1,0 +1,10 @@
+// ─────────────────────────────────────────────
+// Sitepackage – Main SCSS Entry
+// TYPO3 LTS 14 | Loaded after conn_base/main.css
+// ─────────────────────────────────────────────
+
+// 1. Theme overrides – uncomment variables in _theme.scss to activate
+@use 'theme';
+
+// 2. Project-specific styles
+// Add site-specific component styles below this line.

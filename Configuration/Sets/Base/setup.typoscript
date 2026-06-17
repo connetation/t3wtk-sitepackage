@@ -1,1 +1,30 @@
-@import 'EXT:conn_base/Configuration/TypoScript/setup.typoscript'
+# ─────────────────────────────────────────────
+# Sitepackage – Site-specific TypoScript
+# conn/base TypoScript is already loaded via the
+# Set dependency declared in config.yaml.
+# ─────────────────────────────────────────────
+
+# Load sitepackage stylesheet after conn_base/main.css.
+# Edit Resources/Private/Scss/_theme.scss, then rebuild
+# (npm install && npm run build) to activate overrides.
+page.includeCSS {
+    conn_sitepackage = EXT:conn_sitepackage/Resources/Public/Css/main.css
+    conn_sitepackage.media = all
+}
+
+# Template override paths (higher index = higher priority in Fluid).
+# Place override templates in Resources/Private/Templates/Page/,
+# Partials/, or Layouts/ to replace conn_base equivalents.
+page.10 {
+    templateRootPaths.10 = EXT:conn_sitepackage/Resources/Private/Templates/Page/
+    partialRootPaths.10  = EXT:conn_sitepackage/Resources/Private/Partials/
+    layoutRootPaths.10   = EXT:conn_sitepackage/Resources/Private/Layouts/
+}
+
+# Content element override paths — index 30 is checked before
+# conn_elements (20) and conn_base (10), so sitepackage CE overrides win.
+lib.contentElement {
+    templateRootPaths.30 = EXT:conn_sitepackage/Resources/Private/Templates/
+    partialRootPaths.30  = EXT:conn_sitepackage/Resources/Private/Partials/
+    layoutRootPaths.30   = EXT:conn_sitepackage/Resources/Private/Layouts/
+}
