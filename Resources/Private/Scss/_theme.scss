@@ -2,33 +2,49 @@
 // Connetation Sitepackage – Theme Override Control Panel
 // ════════════════════════════════════════════════════════════════
 //
-// All CSS custom properties from conn/base and conn/elements are
-// listed here, grouped by category. Uncomment any value to override
-// the default set in conn_base/main.css or a component CSS file.
-//
 // Load order on the page:
-//   1. EXT:conn_base/Resources/Public/Css/main.css   (base tokens + Bootstrap)
-//   2. EXT:conn_elements/.../component.css           (per-element, via f:asset.css)
-//   3. EXT:conn_sitepackage/Resources/Public/Css/main.css  ← THIS FILE
+//   1. EXT:conn_base/Resources/Public/Css/main.css       (Bootstrap + base tokens)
+//   2. EXT:conn_elements/.../component.css               (per-element, via f:asset.css)
+//   3. EXT:conn_sitepackage/Resources/Public/Css/main.css  ← THIS FILE (wins everywhere)
 //
-// Because this file loads last, any value set here wins.
+// HOW OVERRIDING WORKS
+// ─────────────────────────────────────────────────────────────────
+// conn/base compiles Bootstrap with $primary set to the brand color.
+// At runtime, --conn-accent aliases --bs-primary so you have two levers:
+//
+//   Override --bs-primary → changes Bootstrap components AND conn accent simultaneously.
+//   Override --conn-accent → changes conn accent only (decouples it from BS primary).
+//
+// To change the brand color, uncomment and edit Section A.
 // ════════════════════════════════════════════════════════════════
 
 
-// ── A. Theme-invariant tokens ────────────────────────────────
-// Apply in both light and dark modes.
-// Defined in conn_base theme/_light.scss and conn_elements _tokens.scss.
+// ── A. Brand / accent color ──────────────────────────────────
+// Primary override point. --conn-accent and all BS primary-based
+// components (buttons, badges, links…) pick this up automatically.
 //
 // :root {
-//     --conn-accent:       #6366f1;     // Main brand / interactive colour (indigo)
-//     --conn-accent-hover: #4f52d4;     // Darkened accent for hover states
-//     --conn-radius:       0.75rem;     // Global border-radius used by cards & components
-//     --conn-transition:   0.2s ease-in-out;
+//     --bs-primary:     #6366f1;    // Bootstrap + conn accent (recommended single override)
+//     --bs-primary-rgb: 99, 102, 241; // Required for rgba() uses; match --bs-primary
+//
+//     // Override only conn accent (leave BS primary unchanged):
+//     // --conn-accent:       #6366f1;
+//     // --conn-accent-hover: #4f52d4;  // Hover/darkened accent
 // }
 
 
-// ── B. Light mode overrides ──────────────────────────────────
-// conn_base defines these in [data-bs-theme="light"] + :root:not([data-bs-theme="dark"]).
+// ── B. Global design tokens ──────────────────────────────────
+// Applied in both light and dark modes.
+//
+// :root {
+//     --conn-radius:     0.75rem;          // Global border-radius for cards & components
+//     --conn-transition: 0.2s ease-in-out;
+//     --conn-btn-color:  #fff;             // Text color on filled buttons
+// }
+
+
+// ── C. Light mode overrides ──────────────────────────────────
+// Selector matches conn/base: [data-bs-theme="light"] and :root (no dark).
 
 // [data-bs-theme="light"],
 // :root:not([data-bs-theme="dark"]) {
@@ -40,7 +56,7 @@
 //     --conn-surface-raised: #ffffff;              // Elevated surface (modals, popovers)
 //     --conn-surface-hover:  rgba(99, 102, 241, 0.1);
 //
-//     // ── Navigation & Footer ────────────────────
+//     // ── Navigation & footer ────────────────────
 //     --conn-nav-bg:    #ffffff;
 //     --conn-footer-bg: #ffffff;
 //
@@ -51,6 +67,9 @@
 //     // ── Text ──────────────────────────────────
 //     --conn-text:       #1e1e3f;
 //     --conn-text-muted: #6b7280;
+//     --conn-heading:    #0a0a0a;
+//     --conn-link:       #6366f1;
+//     --conn-link-hover: #4f52d4;
 //
 //     // ── Accent soft / glow ────────────────────
 //     --conn-accent-soft: rgba(99, 102, 241, 0.1);
@@ -62,13 +81,12 @@
 //     --conn-shadow-hover: 0 8px 32px rgb(99 102 241 / 22%);
 //
 //     // ── Bootstrap CSS-var overrides ───────────
-//     --bs-body-bg:       #f4f5ff;
-//     --bs-heading-color: #0a0a0a;
+//     // Override Bootstrap body background (also sets --bs-body-bg used by BS internals).
+//     // --bs-body-bg: #f4f5ff;
 // }
 
 
-// ── C. Dark mode overrides ───────────────────────────────────
-// conn_base defines these in [data-bs-theme="dark"].
+// ── D. Dark mode overrides ───────────────────────────────────
 
 // [data-bs-theme="dark"] {
 //
@@ -79,7 +97,7 @@
 //     --conn-surface-raised: #1e1e42;
 //     --conn-surface-hover:  rgba(255, 255, 255, 0.07);
 //
-//     // ── Navigation & Footer ────────────────────
+//     // ── Navigation & footer ────────────────────
 //     --conn-nav-bg:    #12122a;
 //     --conn-footer-bg: #12122a;
 //
@@ -90,6 +108,9 @@
 //     // ── Text ──────────────────────────────────
 //     --conn-text:       #e2e2ff;
 //     --conn-text-muted: #8b8bcd;
+//     --conn-heading:    #fafafa;
+//     --conn-link:       #a5b4fc;
+//     --conn-link-hover: #c7d2fe;
 //
 //     // ── Accent soft / glow ────────────────────
 //     --conn-accent-soft: rgba(99, 102, 241, 0.15);
@@ -101,22 +122,22 @@
 //     --conn-shadow-hover: 0 8px 32px rgb(99 102 241 / 28%);
 //
 //     // ── Bootstrap CSS-var overrides ───────────
-//     --bs-body-bg:       #0b0b1a;
-//     --bs-heading-color: #fafafa;
+//     // --bs-body-bg: #0b0b1a;
 // }
 
 
-// ── D. conn/base – Navigation ────────────────────────────────
-// Defined in conn_base _navigation.scss.
+// ── E. Navigation ────────────────────────────────────────────
 
 // :root {
-//     --conn-navbar-height: 64px;  // Used to offset content for fixed navbars
+//     --conn-navbar-height: 64px;          // Offsets body padding for fixed navbars
+//     --conn-nav-panel-link-size:       1.125rem;
+//     --conn-nav-panel-sublink-size:    0.9375rem;
+//     --conn-nav-panel-sublink-size-l3: 0.875rem;
 // }
 
 
-// ── E. conn/elements – Badge tokens ─────────────────────────
+// ── F. Badge tokens (conn/elements) ─────────────────────────
 // Status badge colours used by the Dashboard content element.
-// Defined in conn_elements Shared/_tokens.scss.
 
 // [data-bs-theme="light"],
 // :root:not([data-bs-theme="dark"]) {
