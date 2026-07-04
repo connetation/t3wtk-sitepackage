@@ -5,7 +5,13 @@
     "license": "GPL-2.0-or-later",
     "require": {
         "typo3/cms-core": "^14.0",
-        "conn/base": "^1.0.0"
+        "conn/base": "^1.0.0",
+        "conn/elements": "^1.0.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Connetation\\Sitepackage\\": "Classes/"
+        }
     },
     "extra": {
         "typo3/cms": {

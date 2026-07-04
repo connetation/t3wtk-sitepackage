@@ -2,4 +2,5 @@ name: conn/sitepackage
 label: 'Sitepackage'
 dependencies:
   - conn/base
+  - conn/elements
 hidden: true
