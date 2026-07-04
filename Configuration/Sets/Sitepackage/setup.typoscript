@@ -21,10 +21,15 @@ page.10 {
     layoutRootPaths.10   = EXT:conn_sitepackage/Resources/Private/Layouts/
 }
 
-# Content element override paths — index 30 is checked before
-# conn_elements (20) and conn_base (10), so sitepackage CE overrides win.
+# Content element override paths — index 50 is checked before
+# conn_elements (40) and conn_base (30), so sitepackage CE overrides win.
+# NOTE: fluid_styled_content CTypes and the conn_elements CEs copy
+# lib.contentElement / lib.conn_elements_ce with `=<` BEFORE this set loads,
+# so these paths only reach objects copied later. To override a template of
+# an existing CType, additionally set the path directly on it, e.g.:
+#   tt_content.textmedia.templateRootPaths.50 = EXT:conn_sitepackage/Resources/Private/Templates/
 lib.contentElement {
-    templateRootPaths.30 = EXT:conn_sitepackage/Resources/Private/Templates/
-    partialRootPaths.30  = EXT:conn_sitepackage/Resources/Private/Partials/
-    layoutRootPaths.30   = EXT:conn_sitepackage/Resources/Private/Layouts/
+    templateRootPaths.50 = EXT:conn_sitepackage/Resources/Private/Templates/
+    partialRootPaths.50  = EXT:conn_sitepackage/Resources/Private/Partials/
+    layoutRootPaths.50   = EXT:conn_sitepackage/Resources/Private/Layouts/
 }
