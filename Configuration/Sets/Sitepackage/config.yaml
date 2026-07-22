@@ -2,6 +2,8 @@ name: conn/sitepackage
 label: 'Sitepackage'
 dependencies:
   - conn/base
+  - baschte/content-animations
+  - baschte/content-animations-fluid-styles-content
 # conn/elements is optional: its TypoScript is loaded (in correct order, before
 # this set) only when the package is installed and activated for the site.
 optionalDependencies:
