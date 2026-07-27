@@ -5,7 +5,24 @@
 // Load order on the page:
 //   1. EXT:conn_base/Resources/Public/Css/main.css       (Bootstrap + base tokens)
 //   2. EXT:conn_elements/.../component.css               (per-element, via f:asset.css)
-//   3. EXT:conn_sitepackage/Resources/Public/Css/main.css  ← THIS FILE (wins everywhere)
+//   3. EXT:conn_sitepackage/Resources/Public/Css/main.css  ← THIS FILE
+//   4. Page/ThemeVars.html inline <style>                  (site settings — wins over ALL of the above)
+//
+// conn/base's ThemeVars partial renders an inline <style> block driven by
+// TYPO3 site settings (config/sites/<site>/settings.yaml, editable under
+// "Site Settings" in the backend — see conn/base's settings.definitions.yaml
+// for the full list: theme.accent, theme.light.*, theme.dark.*, …). Because
+// that block is rendered in the page body — after every compiled stylesheet
+// in <head> — it wins any same-specificity tie against this file. If a
+// token looks like it "won't override", check the site settings first:
+// whatever's set there beats an uncommented rule here.
+//
+// Use THIS file (SCSS, requires a rebuild + deploy) for: per-environment
+// defaults, tokens with no site-setting equivalent (e.g. --conn-content-max,
+// --conn-card-radius, the --conn-space-*/--conn-font-size-* scale, badge
+// colors), or overrides that should survive regardless of who edits site
+// settings later. Use site settings for: day-to-day editorial brand-color
+// tweaks that shouldn't require a deploy.
 //
 // HOW OVERRIDING WORKS
 // ─────────────────────────────────────────────────────────────────
@@ -37,9 +54,43 @@
 // Applied in both light and dark modes.
 //
 // :root {
-//     --conn-radius:     0.75rem;          // Global border-radius for cards & components
-//     --conn-transition: 0.2s ease-in-out;
-//     --conn-btn-color:  #fff;             // Text color on filled buttons
+//     --conn-radius:      0.75rem;          // Global border-radius for cards & components
+//     --conn-card-radius: var(--conn-radius); // Cards only — override independently of --conn-radius
+//     --conn-transition:  0.2s ease-in-out;
+//     --conn-btn-color:   #fff;             // Text color on filled buttons
+//     --conn-content-max: 1080px;           // Max content width (readable line length, 4K cap)
+//
+//     // Shadow-hover primitives — composable, used by --conn-shadow-hover
+//     // (--conn-sh-color is theme-scoped, see sections C/D)
+//     --conn-sh-x:      0;
+//     --conn-sh-y:      8px;
+//     --conn-sh-blur:   32px;
+//     --conn-sh-spread: 0;
+// }
+
+
+// ── B2. Spacing & typography scale ───────────────────────────
+// Fluid clamp() scale, 8px spacing base / 18px body + ~1.25 ratio type
+// scale, interpolated over a 360px–1240px viewport range. Rarely needs
+// overriding per-project — change only for a full rescale.
+//
+// :root {
+//     --conn-space-2xs: 0.25rem;
+//     --conn-space-xs:  0.5rem;
+//     --conn-space-sm:  1rem;
+//     --conn-space-md:  clamp(1.25rem, 1.15rem + 0.45vw, 1.5rem);
+//     --conn-space-lg:  clamp(1.75rem, 1.44rem + 1.36vw, 2.5rem);
+//     --conn-space-xl:  clamp(2.5rem,  1.89rem + 2.73vw, 4rem);
+//     --conn-space-2xl: clamp(3.5rem,  2.48rem + 4.55vw, 6rem);
+//
+//     --conn-font-size-sm:   clamp(0.8125rem, 0.79rem + 0.11vw, 0.875rem);
+//     --conn-font-size-body: clamp(1rem,      0.95rem + 0.23vw, 1.125rem);
+//     --conn-font-size-h3:   clamp(1.25rem,   1.17rem + 0.34vw, 1.4375rem);
+//     --conn-font-size-h2:   clamp(1.625rem,  1.37rem + 1.14vw, 2.25rem);
+//     --conn-font-size-h1:   clamp(2rem,      1.39rem + 2.73vw, 3.5rem);
+//
+//     --conn-line-height-tight:  1.1;
+//     --conn-line-height-normal: 1.6;
 // }
 
 
@@ -71,14 +122,18 @@
 //     --conn-link:       #6366f1;
 //     --conn-link-hover: #4f52d4;
 //
+//     // ── Secondary accent (card hover gradients, highlights) ───
+//     --conn-accent-secondary:       #06b6d4;
+//     --conn-accent-secondary-hover: #0891b2;
+//
 //     // ── Accent soft / glow ────────────────────
 //     --conn-accent-soft: rgba(99, 102, 241, 0.1);
 //     --conn-accent-glow: rgba(99, 102, 241, 0.2);
 //
 //     // ── Shadows ───────────────────────────────
-//     --conn-shadow:       0 4px 24px rgb(99 102 241 / 15%);
-//     --conn-shadow-card:  0 1px 4px rgb(0 0 0 / 6%);
-//     --conn-shadow-hover: 0 8px 32px rgb(99 102 241 / 22%);
+//     --conn-shadow:      0 4px 24px rgb(99 102 241 / 15%);
+//     --conn-shadow-card: 0 1px 4px rgb(0 0 0 / 6%);
+//     --conn-sh-color:    rgb(99 102 241 / 22%);   // feeds --conn-shadow-hover, see Section B
 //
 //     // ── Bootstrap CSS-var overrides ───────────
 //     // Override Bootstrap body background (also sets --bs-body-bg used by BS internals).
@@ -112,14 +167,18 @@
 //     --conn-link:       #a5b4fc;
 //     --conn-link-hover: #c7d2fe;
 //
+//     // ── Secondary accent (card hover gradients, highlights) ───
+//     --conn-accent-secondary:       #22d3ee;
+//     --conn-accent-secondary-hover: #06b6d4;
+//
 //     // ── Accent soft / glow ────────────────────
 //     --conn-accent-soft: rgba(99, 102, 241, 0.15);
 //     --conn-accent-glow: rgba(99, 102, 241, 0.3);
 //
 //     // ── Shadows ───────────────────────────────
-//     --conn-shadow:       0 4px 24px rgb(0 0 0 / 40%);
-//     --conn-shadow-card:  0 1px 4px rgb(0 0 0 / 25%);
-//     --conn-shadow-hover: 0 8px 32px rgb(99 102 241 / 28%);
+//     --conn-shadow:      0 4px 24px rgb(0 0 0 / 40%);
+//     --conn-shadow-card: 0 1px 4px rgb(0 0 0 / 25%);
+//     --conn-sh-color:    rgb(99 102 241 / 28%);   // feeds --conn-shadow-hover, see Section B
 //
 //     // ── Bootstrap CSS-var overrides ───────────
 //     // --bs-body-bg: #0b0b1a;
