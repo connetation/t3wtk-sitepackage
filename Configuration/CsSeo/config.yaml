@@ -1,0 +1,3 @@
+imports:
+  - resource: 'EXT:conn_sitepackage/Configuration/CsSeo/news.yaml'
+  - resource: 'EXT:conn_sitepackage/Configuration/CsSeo/events.yaml'

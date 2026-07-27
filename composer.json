@@ -19,6 +19,9 @@
         }
     },
     "suggest": {
-        "conn/elements": "Optional content-element library (sliders, cards, dashboard, …) on top of conn/base"
+        "conn/elements": "Optional content-element library (sliders, cards, dashboard, …) on top of conn/base",
+        "clickstorm/cs-seo": "Extends pages/news/event records with SEO properties, see Configuration/CsSeo",
+        "georgringer/news": "Enables the cs_seo integration in Configuration/CsSeo/news.yaml",
+        "derhansen/sf_event_mgt": "Enables the cs_seo integration in Configuration/CsSeo/events.yaml"
     }
 }

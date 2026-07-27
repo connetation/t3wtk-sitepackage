@@ -1,0 +1,27 @@
+records:
+
+  tx_news_domain_model_news:
+
+    # cs_seo properties are shown whenever this GET parameter is present
+    enable: 'GP:tx_news_pi1|news'
+
+    # fields on the news record used as fallback when no SEO field is set
+    fallback:
+      title: title
+      description: teaser
+
+    # backend "SEO" evaluation module support
+    evaluation:
+      getParams: >-
+        &tx_news_pi1[controller]=News&tx_news_pi1[action]=detail&tx_news_pi1[news]=|
+
+      # fallback, used when a record's storage pid isn't listed below
+      detailPid: <detail-pid>
+
+    # read by RecordEvaluationPidEventListener: which detail page to use for
+    # the evaluation preview, per news storage pid. Add a line here for every
+    # extra news list/detail page instead of touching PHP.
+    # https://docs.typo3.org/p/clickstorm/cs-seo/main/en-us/Developer/ExtendExistingModel/Index.html
+    detailPidByStoragePid:
+      storagePid-1: detailPid-1 
+      storagePid-2: detailPid-2 

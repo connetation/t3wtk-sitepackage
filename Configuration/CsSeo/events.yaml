@@ -1,0 +1,24 @@
+records:
+
+  tx_sfeventmgt_domain_model_event:
+
+    # cs_seo properties are shown whenever this GET parameter is present
+    enable: 'GP:tx_sfeventmgt_pieventdetail|event'
+
+    # fields on the event record used as fallback when no SEO field is set
+    fallback:
+      title: title
+      description: teaser
+
+    # backend "SEO" evaluation module support. detailPid is required for the
+    # table to appear in the evaluation module — override it per project
+    # (e.g. via an EXT:sitepackage fork's own CsSeo/events.yaml importing
+    # this file), pointing at the project's actual event detail page.
+    #
+    # If a project has multiple event list/detail page pairs, add a
+    # detailPidByStoragePid map here too (storage pid => detail page pid) —
+    # RecordEvaluationPidEventListener picks it up automatically.
+    evaluation:
+      getParams: >-
+        &tx_sfeventmgt_pieventdetail[controller]=Event&tx_sfeventmgt_pieventdetail[action]=detail&tx_sfeventmgt_pieventdetail[event]=|
+      detailPid: 0
