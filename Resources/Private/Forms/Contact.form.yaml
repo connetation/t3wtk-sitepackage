@@ -1,0 +1,119 @@
+identifier: contact
+type: Form
+label: 'Contact form'
+prototypeName: standard
+renderingOptions:
+  submitButtonLabel: Send
+  translation:
+    translationFiles:
+      - 'EXT:conn_sitepackage/Resources/Private/Language/locallang_forms.xlf'
+finishers:
+  -
+    options:
+      subject: 'Contact request from {first_name} {last_name}'
+      recipients:
+        # TODO (per project): replace with the real recipient(s) before going live.
+        contact@example.com: 'Recipient Name'
+      senderAddress: noreply@example.com
+      senderName: 'Sender Name'
+      replyToRecipients:
+        '{email}': '{first_name} {last_name}'
+      addHtmlPart: true
+      attachUploads: true
+      templateName: ContactForm
+      title: ''
+      message: ''
+      # No "language" key here on purpose: this admin-facing notification
+      # email follows the submitting visitor's frontend language. Set
+      # "language: default" instead to always send it in the xlf's source
+      # language (English) regardless of visitor language.
+      translation:
+        translationFiles:
+          - 'EXT:conn_sitepackage/Resources/Private/Language/locallang_forms.xlf'
+      errorMessage: ''
+    identifier: EmailToReceiver
+    defaultValue: ''
+  -
+    options:
+      pageUid: '1'
+      additionalParameters: ''
+      fragment: ''
+      errorMessage: ''
+    identifier: Redirect
+renderables:
+  -
+    renderingOptions:
+      nextButtonLabel: Send
+    type: Page
+    identifier: page-1
+    label: ''
+    renderables:
+      -
+        defaultValue: ''
+        type: SingleSelect
+        identifier: salutation
+        label: Salutation
+        properties:
+          options:
+            herr: Mr
+            frau: Ms
+          prependOptionLabel: '- please choose -'
+      -
+        defaultValue: ''
+        type: Text
+        identifier: first_name
+        label: 'First name'
+        properties:
+          fluidAdditionalAttributes:
+            required: required
+            data-validate-required-message: 'Please enter your first name.'
+        validators:
+          -
+            identifier: NotEmpty
+      -
+        defaultValue: ''
+        type: Text
+        identifier: last_name
+        label: 'Last name'
+        properties:
+          fluidAdditionalAttributes:
+            required: required
+            data-validate-required-message: 'Please enter your last name.'
+        validators:
+          -
+            identifier: NotEmpty
+      -
+        defaultValue: ''
+        type: Text
+        identifier: company
+        label: Company
+        properties: {  }
+      -
+        defaultValue: ''
+        type: Text
+        identifier: email
+        label: Email
+        properties:
+          fluidAdditionalAttributes:
+            required: required
+            data-validate-required-message: 'Please enter your email address.'
+            data-validate-type: email
+            data-validate-type-message: 'Please enter a valid email address.'
+        validators:
+          -
+            identifier: NotEmpty
+          -
+            identifier: EmailAddress
+      -
+        defaultValue: ''
+        type: Textarea
+        identifier: message
+        label: Message
+        properties:
+          fluidAdditionalAttributes:
+            required: required
+            data-validate-required-message: 'Please enter a message.'
+        validators:
+          -
+            identifier: NotEmpty
+variants: {  }

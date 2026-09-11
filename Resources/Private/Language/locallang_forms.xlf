@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="EXT:conn_sitepackage/Resources/Private/Language/locallang_forms.xlf">
+        <header/>
+        <body>
+            <!-- Contact.form.yaml: form-wide -->
+            <trans-unit id="element.contact.renderingOptions.submitButtonLabel">
+                <source>Send</source>
+            </trans-unit>
+            <trans-unit id="element.page-1.renderingOptions.nextButtonLabel">
+                <source>Send</source>
+            </trans-unit>
+
+            <!-- Contact.form.yaml: salutation (SingleSelect) -->
+            <trans-unit id="element.salutation.properties.label">
+                <source>Salutation</source>
+            </trans-unit>
+            <trans-unit id="element.salutation.properties.prependOptionLabel">
+                <source>- please choose -</source>
+            </trans-unit>
+            <trans-unit id="element.salutation.properties.options.herr">
+                <source>Mr</source>
+            </trans-unit>
+            <trans-unit id="element.salutation.properties.options.frau">
+                <source>Ms</source>
+            </trans-unit>
+
+            <!-- Contact.form.yaml: first_name -->
+            <trans-unit id="element.first_name.properties.label">
+                <source>First name</source>
+            </trans-unit>
+            <trans-unit id="element.first_name.properties.data-validate-required-message">
+                <source>Please enter your first name.</source>
+            </trans-unit>
+
+            <!-- Contact.form.yaml: last_name -->
+            <trans-unit id="element.last_name.properties.label">
+                <source>Last name</source>
+            </trans-unit>
+            <trans-unit id="element.last_name.properties.data-validate-required-message">
+                <source>Please enter your last name.</source>
+            </trans-unit>
+
+            <!-- Contact.form.yaml: company -->
+            <trans-unit id="element.company.properties.label">
+                <source>Company</source>
+            </trans-unit>
+
+            <!-- Contact.form.yaml: email -->
+            <trans-unit id="element.email.properties.label">
+                <source>Email</source>
+            </trans-unit>
+            <trans-unit id="element.email.properties.data-validate-required-message">
+                <source>Please enter your email address.</source>
+            </trans-unit>
+            <trans-unit id="element.email.properties.data-validate-type-message">
+                <source>Please enter a valid email address.</source>
+            </trans-unit>
+
+            <!-- Contact.form.yaml: message -->
+            <trans-unit id="element.message.properties.label">
+                <source>Message</source>
+            </trans-unit>
+            <trans-unit id="element.message.properties.data-validate-required-message">
+                <source>Please enter a message.</source>
+            </trans-unit>
+
+            <!-- Contact.form.yaml: EmailToReceiver finisher -->
+            <trans-unit id="finisher.EmailToReceiver.subject">
+                <source>Contact request from {first_name} {last_name}</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

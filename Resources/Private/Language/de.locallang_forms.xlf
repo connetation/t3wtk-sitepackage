@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" target-language="de" datatype="plaintext" original="EXT:conn_sitepackage/Resources/Private/Language/locallang_forms.xlf" product-name="conn_sitepackage">
+        <header/>
+        <body>
+            <trans-unit id="element.contact.renderingOptions.submitButtonLabel">
+                <source>Send</source>
+                <target>Absenden</target>
+            </trans-unit>
+            <trans-unit id="element.page-1.renderingOptions.nextButtonLabel">
+                <source>Send</source>
+                <target>Absenden</target>
+            </trans-unit>
+            <trans-unit id="element.salutation.properties.label">
+                <source>Salutation</source>
+                <target>Anrede</target>
+            </trans-unit>
+            <trans-unit id="element.salutation.properties.prependOptionLabel">
+                <source>- please choose -</source>
+                <target>- bitte wählen -</target>
+            </trans-unit>
+            <trans-unit id="element.salutation.properties.options.herr">
+                <source>Mr</source>
+                <target>Herr</target>
+            </trans-unit>
+            <trans-unit id="element.salutation.properties.options.frau">
+                <source>Ms</source>
+                <target>Frau</target>
+            </trans-unit>
+            <trans-unit id="element.first_name.properties.label">
+                <source>First name</source>
+                <target>Vorname</target>
+            </trans-unit>
+            <trans-unit id="element.first_name.properties.data-validate-required-message">
+                <source>Please enter your first name.</source>
+                <target>Bitte gib deinen Vornamen ein.</target>
+            </trans-unit>
+            <trans-unit id="element.last_name.properties.label">
+                <source>Last name</source>
+                <target>Nachname</target>
+            </trans-unit>
+            <trans-unit id="element.last_name.properties.data-validate-required-message">
+                <source>Please enter your last name.</source>
+                <target>Bitte gib deinen Nachnamen ein.</target>
+            </trans-unit>
+            <trans-unit id="element.company.properties.label">
+                <source>Company</source>
+                <target>Firma</target>
+            </trans-unit>
+            <trans-unit id="element.email.properties.label">
+                <source>Email</source>
+                <target>E-Mail</target>
+            </trans-unit>
+            <trans-unit id="element.email.properties.data-validate-required-message">
+                <source>Please enter your email address.</source>
+                <target>Bitte gib deine E-Mail-Adresse ein.</target>
+            </trans-unit>
+            <trans-unit id="element.email.properties.data-validate-type-message">
+                <source>Please enter a valid email address.</source>
+                <target>Bitte gib eine gültige E-Mail-Adresse ein.</target>
+            </trans-unit>
+            <trans-unit id="element.message.properties.label">
+                <source>Message</source>
+                <target>Nachricht</target>
+            </trans-unit>
+            <trans-unit id="element.message.properties.data-validate-required-message">
+                <source>Please enter a message.</source>
+                <target>Bitte gib eine Nachricht ein.</target>
+            </trans-unit>
+            <trans-unit id="finisher.EmailToReceiver.subject">
+                <source>Contact request from {first_name} {last_name}</source>
+                <target>Kontaktanfrage von {first_name} {last_name}</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

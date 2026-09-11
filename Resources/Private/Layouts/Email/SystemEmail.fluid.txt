@@ -1,0 +1,8 @@
+<f:spaceless><f:render section="Title" optional="true" />
+<f:render section="Main" /></f:spaceless>
+
+This email was sent by {typo3.sitename} from URL: {normalizedParams.siteUrl}
+
+Please contact your site administrator if you feel you received this email by accident.
+
+© <f:format.date format="Y">now</f:format.date> {typo3.sitename}. All rights reserved.

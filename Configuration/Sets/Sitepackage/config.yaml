@@ -6,4 +6,5 @@ dependencies:
   - clickstorm/cs-seo
   - baschte/content-animations
   - baschte/content-animations-fluid-styles-content
+  - typo3/email
 hidden: true
