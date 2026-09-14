@@ -9,3 +9,6 @@ Thumbs.db
 .idea/
 .vscode/
 *.swp
+
+# Local documentation render output
+Documentation-GENERATED-temp/
