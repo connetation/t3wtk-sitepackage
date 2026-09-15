@@ -4,7 +4,7 @@
 //
 // Load order on the page:
 //   1. EXT:conn_base/Resources/Public/Css/main.css       (Bootstrap + base tokens)
-//   2. EXT:conn_elements/.../component.css               (per-element, via f:asset.css)
+//   2. EXT:conn_elements|conn_wiki|conn_dashboard/.../component.css (per-element, via f:asset.css)
 //   3. EXT:conn_sitepackage/Resources/Public/Css/main.css  ← THIS FILE
 //   4. Page/ThemeVars.html inline <style>                  (site settings — wins over ALL of the above)
 //
@@ -192,7 +192,7 @@
 // }
 
 
-// ── F. Badge tokens (conn/elements) ─────────────────────────
+// ── F. Badge tokens (conn/dashboard) ─────────────────────────
 // Status badge colours used by the Dashboard content element.
 
 // [data-bs-theme="light"],
