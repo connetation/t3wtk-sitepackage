@@ -6,8 +6,8 @@
     "require": {
         "typo3/cms-core": "^14.0",
         "baschte/content-animations": "^2.7",
-        "conn/t3kit-base": "^1.0.0",
-        "conn/t3kit-elements": "^1.0.0",
+        "conn/t3kit-base": "^2.0.0",
+        "conn/t3kit-elements": "^2.0.0",
         "clickstorm/cs-seo": "^10.2"
     },
     "autoload": {
