@@ -8,28 +8,21 @@
 # Edit Resources/Private/Scss/_theme.scss, then rebuild
 # (npm install && npm run build) to activate overrides.
 page.includeCSS {
-    conn_sitepackage = EXT:conn_sitepackage/Resources/Public/Css/main.css
-    conn_sitepackage.media = all
+    conn_t3kit_sitepackage = EXT:conn_t3kit_sitepackage/Resources/Public/Css/main.css
+    conn_t3kit_sitepackage.media = all
 }
 
 # Template override paths (higher index = higher priority in Fluid).
 # Place override templates in Resources/Private/Templates/Page/,
 # Partials/, or Layouts/ to replace conn_base equivalents.
 page.10 {
-    templateRootPaths.10 = EXT:conn_sitepackage/Resources/Private/Templates/Page/
-    partialRootPaths.10  = EXT:conn_sitepackage/Resources/Private/Partials/
-    layoutRootPaths.10   = EXT:conn_sitepackage/Resources/Private/Layouts/
+    templateRootPaths.10 = EXT:conn_t3kit_sitepackage/Resources/Private/Templates/Page/
+    partialRootPaths.10  = EXT:conn_t3kit_sitepackage/Resources/Private/Partials/
+    layoutRootPaths.10   = EXT:conn_t3kit_sitepackage/Resources/Private/Layouts/
 }
 
-# Content element override paths — index 50 is checked before
-# conn_elements (40) and conn_base (30), so sitepackage CE overrides win.
-# NOTE: fluid_styled_content CTypes and the conn_elements CEs copy
-# lib.contentElement / lib.conn_elements_ce with `=<` BEFORE this set loads,
-# so these paths only reach objects copied later. To override a template of
-# an existing CType, additionally set the path directly on it, e.g.:
-#   tt_content.textmedia.templateRootPaths.50 = EXT:conn_sitepackage/Resources/Private/Templates/
 lib.contentElement {
-    templateRootPaths.50 = EXT:conn_sitepackage/Resources/Private/Templates/
-    partialRootPaths.50  = EXT:conn_sitepackage/Resources/Private/Partials/
-    layoutRootPaths.50   = EXT:conn_sitepackage/Resources/Private/Layouts/
+    templateRootPaths.50 = EXT:conn_t3kit_sitepackage/Resources/Private/Templates/
+    partialRootPaths.50  = EXT:conn_t3kit_sitepackage/Resources/Private/Partials/
+    layoutRootPaths.50   = EXT:conn_t3kit_sitepackage/Resources/Private/Layouts/
 }

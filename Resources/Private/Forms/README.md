@@ -7,11 +7,11 @@ four for a new project or a new form.
 
 The generic validation engine itself lives in `conn/base`
 (`Resources/Private/JavaScript/main.js`, `initFormValidation`) since it has
-no project-specific content — everything below only touches `conn/sitepackage`
+no project-specific content — everything below only touches `conn/t3kit-sitepackage`
 (or your project's own fork of it).
 
-> **This all assumes the extension key stays `conn_sitepackage`.** Every
-> path below is a hardcoded `EXT:conn_sitepackage/...` reference (the Form
+> **This all assumes the extension key stays `conn_t3kit_sitepackage`.** Every
+> path below is a hardcoded `EXT:conn_t3kit_sitepackage/...` reference (the Form
 > Set, the `email.*RootPaths` defaults in
 > `Configuration/Sets/Sitepackage/settings.definitions.yaml`, the
 > `persistenceIdentifier` a "Form" content element stores). The
@@ -19,7 +19,7 @@ no project-specific content — everything below only touches `conn/sitepackage`
 > *root project's* own `composer.json` "name" — it deliberately leaves
 > `packages/sitepackage/composer.json`'s own `name`/`extension-key`
 > untouched, so these references keep resolving after project setup. If a
-> project ever renames that extension key by hand, every `EXT:conn_sitepackage/...`
+> project ever renames that extension key by hand, every `EXT:conn_t3kit_sitepackage/...`
 > reference in this folder needs updating to match.
 
 ## How to add a new form
@@ -49,14 +49,14 @@ attributes for the error text:
 properties:
   fluidAdditionalAttributes:
     required: required
-    data-validate-required-message: 'LLL:EXT:conn_sitepackage/Resources/Private/Language/locallang_forms.xlf:contact.firstName.required'
+    data-validate-required-message: 'LLL:EXT:conn_t3kit_sitepackage/Resources/Private/Language/locallang_forms.xlf:contact.firstName.required'
 ```
 
 ```yaml
 properties:
   fluidAdditionalAttributes:
     data-validate-type: email
-    data-validate-type-message: 'LLL:EXT:conn_sitepackage/Resources/Private/Language/locallang_forms.xlf:contact.email.invalid'
+    data-validate-type-message: 'LLL:EXT:conn_t3kit_sitepackage/Resources/Private/Language/locallang_forms.xlf:contact.email.invalid'
 ```
 
 Supported checks today: `required` and `data-validate-type: email`. To add a
@@ -89,7 +89,7 @@ per language:
 renderingOptions:
   translation:
     translationFiles:
-      - 'EXT:conn_sitepackage/Resources/Private/Language/locallang_forms.xlf'
+      - 'EXT:conn_t3kit_sitepackage/Resources/Private/Language/locallang_forms.xlf'
 ```
 
 Key conventions (see TYPO3\CMS\Form\Service\TranslationService::translateFormElementValue()/translateFinisherOption() for the authoritative logic):
@@ -150,7 +150,7 @@ which otherwise shows the TYPO3 logo/orange and CMS copyright text). It's
 picked up automatically, no wiring needed, because `email.templateRootPaths`
 / `layoutRootPaths` / `partialRootPaths` already point here by default (see
 `Configuration/Sets/Sitepackage/settings.definitions.yaml`). That's also why
-a NEW project built on `conn/sitepackage` gets working (and branded) email
+a NEW project built on `conn/t3kit-sitepackage` gets working (and branded) email
 templates for free — unlike a plain per-project sitepackage, no manual
 `config/sites/*/settings.yaml` entry is required (compare to how the
 `sk-verband.at` project had to add `email.templateRootPaths` etc. by hand;

@@ -1,5 +1,5 @@
 {
-    "name": "conn/sitepackage",
+    "name": "conn/t3kit-sitepackage",
     "description": "Connetation Sitepackage – site-specific extension built on conn/base for TYPO3 LTS 14",
     "type": "typo3-cms-extension",
     "license": "GPL-2.0-or-later",
@@ -7,17 +7,17 @@
         "typo3/cms-core": "^14.0",
         "baschte/content-animations": "^2.7",
         "conn/base": "^1.0.0",
-        "conn/elements": "^1.0.0",
+        "conn/t3kit-elements": "^1.0.0",
         "clickstorm/cs-seo": "^10.2"
     },
     "autoload": {
         "psr-4": {
-            "Connetation\\Sitepackage\\": "Classes/"
+            "Connetation\\T3kitSitepackage\\": "Classes/"
         }
     },
     "extra": {
         "typo3/cms": {
-            "extension-key": "conn_sitepackage"
+            "extension-key": "conn_t3kit_sitepackage"
         }
     },
     "suggest": {

@@ -7,7 +7,7 @@ Theming
 =======
 
 ``conn/base`` exposes every design token (``--conn-*``) as a CSS custom
-property with a built-in default. ``conn/sitepackage`` doesn't own the
+property with a built-in default. ``conn/t3kit-sitepackage`` doesn't own the
 tokens — it overrides them, two ways, and it matters which one you reach
 for.
 
@@ -38,8 +38,8 @@ Load order — who wins
 ::
 
    1. EXT:conn_base/Resources/Public/Css/main.css       (Bootstrap + base tokens)
-   2. EXT:conn_elements/.../<component>.css             (per-element, self-contained)
-   3. EXT:conn_sitepackage/Resources/Public/Css/main.css  ← _theme.scss compiles here
+   2. EXT:conn_t3kit_elements/.../<component>.css             (per-element, self-contained)
+   3. EXT:conn_t3kit_sitepackage/Resources/Public/Css/main.css  ← _theme.scss compiles here
    4. Page/ThemeVars.html inline <style>                 ← site settings win over all of the above
 
 ``ThemeVars`` renders in the page body, after every ``<head>``-loaded
@@ -66,7 +66,7 @@ Fluid overrides (use sparingly)
 .. warning::
 
    Any file placed at the **same relative path** as one in ``conn/base``
-   (or ``conn/elements``) silently shadows it — TYPO3 resolves templates
+   (or ``conn/t3kit-elements``) silently shadows it — TYPO3 resolves templates
    from the site's own Set/extension before falling back to the
    dependency. There is no warning when this happens, so a forked
    Layout/Partial can quietly go stale if ``conn/base`` later fixes or

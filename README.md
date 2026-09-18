@@ -1,14 +1,14 @@
 # Connetation Sitepackage for TYPO3 LTS 14
 
 Site-specific project layer built on top of `conn/base` (and optionally
-`conn/elements`). This is where a single project's branding, theme
+`conn/t3kit-elements`). This is where a single project's branding, theme
 overrides, SEO wiring, and any project-only Fluid/TypoScript live — it does
 not carry reusable design-system logic itself.
 
 ## Structure
 
 ```
-conn/sitepackage/                   # TYPO3 extension (conn/sitepackage, ext key: conn_sitepackage)
+conn/t3kit-sitepackage/                   # TYPO3 extension (conn/t3kit-sitepackage, ext key: conn_t3kit_sitepackage)
 ├── Classes/
 │   └── EventListener/              # PHP event listeners
 ├── Configuration/
@@ -53,8 +53,8 @@ it overrides them, two ways, and it matters which one you reach for:
 
 ```
 1. EXT:conn_base/Resources/Public/Css/main.css       (Bootstrap + base tokens)
-2. EXT:conn_elements/.../<component>.css             (per-element, self-contained)
-3. EXT:conn_sitepackage/Resources/Public/Css/main.css ← _theme.scss compiles here
+2. EXT:conn_t3kit_elements/.../<component>.css             (per-element, self-contained)
+3. EXT:conn_t3kit_sitepackage/Resources/Public/Css/main.css ← _theme.scss compiles here
 4. Page/ThemeVars.html inline <style>                ← site settings win over all of the above
 ```
 
@@ -70,7 +70,7 @@ See `_theme.scss`'s own header comment for the full breakdown and the
 
 `Resources/Private/Layouts`, `Partials`, and `Templates/Page` are empty
 scaffolding by default. Any file placed at the **same relative path** as
-one in `conn/base` (or `conn/elements`) silently shadows it — TYPO3
+one in `conn/base` (or `conn/t3kit-elements`) silently shadows it — TYPO3
 resolves templates from the site's own Set/extension before falling back
 to the dependency. There's no warning when this happens, so a forked
 Layout/Partial can quietly go stale if `conn/base` later fixes or extends
@@ -85,7 +85,7 @@ TypoScript.
     { "type": "composer", "url": "https://composer-v2.connetation.at/" }
 ],
 "require": {
-    "conn/sitepackage": "^1.0"
+    "conn/t3kit-sitepackage": "^1.0"
 }
 ```
 
@@ -93,11 +93,11 @@ In your TYPO3 site config (`config/sites/<site>/config.yaml`):
 
 ```yaml
 dependencies:
-  - conn/sitepackage
-  - conn/elements   # optional component library
+  - conn/t3kit-sitepackage
+  - conn/t3kit-elements   # optional component library
 ```
 
-`conn/sitepackage`'s Set (`Configuration/Sets/Sitepackage`) declares
+`conn/t3kit-sitepackage`'s Set (`Configuration/Sets/Sitepackage`) declares
 `conn/base`'s Set as a dependency — TYPO3 loads them in order.
 
 ## Build Assets
@@ -108,7 +108,7 @@ deployed as-is — no build step needed on the server.
 To rebuild locally:
 
 ```bash
-cd vendor/conn/sitepackage  # or your local development copy
+cd vendor/conn/t3kit-sitepackage  # or your local development copy
 npm install
 npm run build    # production build (SCSS only, no JS in this package)
 npm run dev      # watch mode
@@ -119,14 +119,14 @@ npm run dev      # watch mode
 - **TYPO3 LTS 14** — Site Set depending on `conn/base`'s Set
 - **Theme override control panel** — `_theme.scss`, see above
 - **SEO** — optional `clickstorm/cs-seo` config for pages/news/events (`Configuration/CsSeo`)
-- **PHP namespace**: `Connetation\Sitepackage`
+- **PHP namespace**: `Connetation\T3kitSitepackage`
 
 ## Extension hierarchy
 
 ```
 TYPO3 site
-├── conn/sitepackage  (this package — project layer, extends conn/base)
+├── conn/t3kit-sitepackage  (this package — project layer, extends conn/base)
 │   └── depends on: conn/base
 ├── conn/base         (reusable foundation — Bootstrap, layouts, design tokens)
-└── conn/elements     (optional component library — added per project)
+└── conn/t3kit-elements     (optional component library — added per project)
 ```

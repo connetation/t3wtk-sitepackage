@@ -12,7 +12,7 @@ $EM_CONF[$_EXTKEY] = [
         'depends' => [
             'typo3'    => '14.0.0-14.99.99',
             'conn_base' => '1.0.0-0.0.0',
-            'conn_elements' => '1.0.0-0.0.0',
+            'conn_t3kit_elements' => '1.0.0-0.0.0',
             'cs_seo' => '10.2.0-0.0.0',
         ],
     ],

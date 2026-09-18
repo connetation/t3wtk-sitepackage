@@ -11,14 +11,14 @@ Introduction
 What does it do?
 =================
 
-``conn/sitepackage`` provides:
+``conn/t3kit-sitepackage`` provides:
 
 - A TYPO3 v14 Site Set depending on ``conn/base``'s Set
 - A theme override "control panel" (:file:`_theme.scss`) — see
   :ref:`theming`
 - Optional `clickstorm/cs-seo` configuration for pages/news/events
   (:file:`Configuration/CsSeo`)
-- PHP namespace: ``Connetation\Sitepackage``
+- PHP namespace: ``Connetation\T3kitSitepackage``
 
 .. _extension-hierarchy:
 
@@ -28,10 +28,10 @@ Extension hierarchy
 ::
 
    TYPO3 site
-   ├── conn/sitepackage  (this package, project layer, extends conn/base)
+   ├── conn/t3kit-sitepackage  (this package, project layer, extends conn/base)
    │   └── depends on: conn/base
    ├── conn/base         (reusable foundation, Bootstrap, layouts, design tokens)
-   └── conn/elements     (optional component library, added per project)
+   └── conn/t3kit-elements     (optional component library, added per project)
 
 .. _structure:
 
@@ -40,7 +40,7 @@ Structure
 
 ::
 
-   conn/sitepackage/                   # TYPO3 extension (conn/sitepackage, ext key: conn_sitepackage)
+   conn/t3kit-sitepackage/                   # TYPO3 extension (conn/t3kit-sitepackage, ext key: conn_t3kit_sitepackage)
    ├── Classes/
    │   └── EventListener/              # PHP event listeners
    ├── Configuration/

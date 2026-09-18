@@ -6,7 +6,7 @@ renderingOptions:
   submitButtonLabel: Send
   translation:
     translationFiles:
-      - 'EXT:conn_sitepackage/Resources/Private/Language/locallang_forms.xlf'
+      - 'EXT:conn_t3kit_sitepackage/Resources/Private/Language/locallang_forms.xlf'
 finishers:
   -
     options:
@@ -29,7 +29,7 @@ finishers:
       # language (English) regardless of visitor language.
       translation:
         translationFiles:
-          - 'EXT:conn_sitepackage/Resources/Private/Language/locallang_forms.xlf'
+          - 'EXT:conn_t3kit_sitepackage/Resources/Private/Language/locallang_forms.xlf'
       errorMessage: ''
     identifier: EmailToReceiver
     defaultValue: ''

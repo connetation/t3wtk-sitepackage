@@ -6,7 +6,7 @@ settings:
   # These three settings are OWNED by typo3/email (see the "typo3/email" Set
   # dependency in config.yaml); re-declared here only to point their default
   # at this package's own Templates/Layouts/Partials/Email folders, so any
-  # project built on conn/sitepackage gets EXT:form's email finishers (and
+  # project built on conn/t3kit-sitepackage gets EXT:form's email finishers (and
   # any other FluidEmail, e.g. felogin) branded and working out of the box —
   # no manual config/sites/*/settings.yaml wiring needed, unlike a plain
   # per-project sitepackage copy would require.
@@ -15,17 +15,17 @@ settings:
   email.templateRootPaths:
     label: 'Email template root paths'
     type: stringlist
-    default: ['EXT:conn_sitepackage/Resources/Private/Templates/Email/']
+    default: ['EXT:conn_t3kit_sitepackage/Resources/Private/Templates/Email/']
     category: email
 
   email.layoutRootPaths:
     label: 'Email layout root paths'
     type: stringlist
-    default: ['EXT:conn_sitepackage/Resources/Private/Layouts/Email/']
+    default: ['EXT:conn_t3kit_sitepackage/Resources/Private/Layouts/Email/']
     category: email
 
   email.partialRootPaths:
     label: 'Email partial root paths'
     type: stringlist
-    default: ['EXT:conn_sitepackage/Resources/Private/Partials/Email/']
+    default: ['EXT:conn_t3kit_sitepackage/Resources/Private/Partials/Email/']
     category: email

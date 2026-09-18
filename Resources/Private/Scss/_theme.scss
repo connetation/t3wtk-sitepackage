@@ -4,8 +4,8 @@
 //
 // Load order on the page:
 //   1. EXT:conn_base/Resources/Public/Css/main.css       (Bootstrap + base tokens)
-//   2. EXT:conn_elements|conn_wiki|conn_dashboard/.../component.css (per-element, via f:asset.css)
-//   3. EXT:conn_sitepackage/Resources/Public/Css/main.css  ← THIS FILE
+//   2. EXT:conn_t3kit_elements|conn_wiki|conn_dashboard/.../component.css (per-element, via f:asset.css)
+//   3. EXT:conn_t3kit_sitepackage/Resources/Public/Css/main.css  ← THIS FILE
 //   4. Page/ThemeVars.html inline <style>                  (site settings — wins over ALL of the above)
 //
 // conn/base's ThemeVars partial renders an inline <style> block driven by

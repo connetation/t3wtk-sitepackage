@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-    <file source-language="en" target-language="de" datatype="plaintext" original="EXT:conn_sitepackage/Resources/Private/Language/locallang_forms.xlf" product-name="conn_sitepackage">
+    <file source-language="en" target-language="de" datatype="plaintext" original="EXT:conn_t3kit_sitepackage/Resources/Private/Language/locallang_forms.xlf" product-name="conn_t3kit_sitepackage">
         <header/>
         <body>
             <trans-unit id="element.contact.renderingOptions.submitButtonLabel">
