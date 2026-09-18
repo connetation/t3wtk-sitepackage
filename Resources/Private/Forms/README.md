@@ -5,7 +5,7 @@ that makes new forms "just work": persistence path, client-side validation,
 email templates, and localization. This file documents how to extend all
 four for a new project or a new form.
 
-The generic validation engine itself lives in `conn/base`
+The generic validation engine itself lives in `conn/t3kit-base`
 (`Resources/Private/JavaScript/main.js`, `initFormValidation`) since it has
 no project-specific content — everything below only touches `conn/t3kit-sitepackage`
 (or your project's own fork of it).
@@ -39,7 +39,7 @@ config is shared by all forms in this folder.
 ## Validation
 
 Client-side validation ([just-validate](https://github.com/justvalidate/just-validate),
-bundled into `conn/base`'s `main.js`) is entirely **data-attribute driven** —
+bundled into `conn/t3kit-base`'s `main.js`) is entirely **data-attribute driven** —
 it is not aware of any specific form or field, so adding one needs zero JS
 changes. It picks up any field with `[required]` and/or `[data-validate-type]`
 inside *any* `<form id="...">` on the page, using ONLY that field's own
@@ -61,8 +61,8 @@ properties:
 
 Supported checks today: `required` and `data-validate-type: email`. To add a
 new check (e.g. a phone/number format), extend `initFormValidation()` in
-`conn/base`'s `main.js` with another `if (el.dataset.validateX === ...)`
-branch — that change is generic and benefits every project on `conn/base`,
+`conn/t3kit-base`'s `main.js` with another `if (el.dataset.validateX === ...)`
+branch — that change is generic and benefits every project on `conn/t3kit-base`,
 so it belongs there, not in a per-project form.
 
 Server-side, keep the matching EXT:form `validators` (`NotEmpty`,
@@ -70,7 +70,7 @@ Server-side, keep the matching EXT:form `validators` (`NotEmpty`,
 on submit regardless of JS.
 
 Styling: errors/success reuse `.is-invalid`/`.invalid-feedback` and
-`.is-valid`/`.valid-feedback`, already styled in conn/base's
+`.is-valid`/`.valid-feedback`, already styled in conn/t3kit-base's
 `Resources/Private/Scss/components/_forms.scss` — nothing to add per form.
 
 ## Localization

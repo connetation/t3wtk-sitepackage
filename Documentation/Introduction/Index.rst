@@ -13,7 +13,7 @@ What does it do?
 
 ``conn/t3kit-sitepackage`` provides:
 
-- A TYPO3 v14 Site Set depending on ``conn/base``'s Set
+- A TYPO3 v14 Site Set depending on ``conn/t3kit-base``'s Set
 - A theme override "control panel" (:file:`_theme.scss`) — see
   :ref:`theming`
 - Optional `clickstorm/cs-seo` configuration for pages/news/events
@@ -28,9 +28,9 @@ Extension hierarchy
 ::
 
    TYPO3 site
-   ├── conn/t3kit-sitepackage  (this package, project layer, extends conn/base)
-   │   └── depends on: conn/base
-   ├── conn/base         (reusable foundation, Bootstrap, layouts, design tokens)
+   ├── conn/t3kit-sitepackage  (this package, project layer, extends conn/t3kit-base)
+   │   └── depends on: conn/t3kit-base
+   ├── conn/t3kit-base         (reusable foundation, Bootstrap, layouts, design tokens)
    └── conn/t3kit-elements     (optional component library, added per project)
 
 .. _structure:
@@ -46,7 +46,7 @@ Structure
    ├── Configuration/
    │   ├── CsSeo/                      # clickstorm/cs-seo config (pages/news/events), optional
    │   ├── Page/                       # Page TSconfig
-   │   ├── Sets/Sitepackage/           # TYPO3 v14 Site Set, depends on conn/base's Set
+   │   ├── Sets/Sitepackage/           # TYPO3 v14 Site Set, depends on conn/t3kit-base's Set
    │   ├── TCA/Overrides/              # pages & tt_content TCA extensions
    │   └── Services.yaml
    ├── Resources/

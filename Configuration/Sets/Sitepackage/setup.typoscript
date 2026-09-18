@@ -1,10 +1,10 @@
 # ─────────────────────────────────────────────
 # Sitepackage – Site-specific TypoScript
-# conn/base TypoScript is already loaded via the
+# conn/t3kit-base TypoScript is already loaded via the
 # Set dependency declared in config.yaml.
 # ─────────────────────────────────────────────
 
-# Load sitepackage stylesheet after conn_base/main.css.
+# Load sitepackage stylesheet after conn_t3kit_base/main.css.
 # Edit Resources/Private/Scss/_theme.scss, then rebuild
 # (npm install && npm run build) to activate overrides.
 page.includeCSS {
@@ -14,7 +14,7 @@ page.includeCSS {
 
 # Template override paths (higher index = higher priority in Fluid).
 # Place override templates in Resources/Private/Templates/Page/,
-# Partials/, or Layouts/ to replace conn_base equivalents.
+# Partials/, or Layouts/ to replace conn_t3kit_base equivalents.
 page.10 {
     templateRootPaths.10 = EXT:conn_t3kit_sitepackage/Resources/Private/Templates/Page/
     partialRootPaths.10  = EXT:conn_t3kit_sitepackage/Resources/Private/Partials/

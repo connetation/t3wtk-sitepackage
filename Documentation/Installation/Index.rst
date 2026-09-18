@@ -75,11 +75,11 @@ Use it as a starter template (recommended for new projects)
         - conn/t3kit-sitepackage
         - conn/t3kit-elements   # optional, but recommended: content elements library
 
-   ``conn/base`` is a **hard requirement** of ``conn/t3kit-sitepackage`` — it's
+   ``conn/t3kit-base`` is a **hard requirement** of ``conn/t3kit-sitepackage`` — it's
    already declared in ``conn/t3kit-sitepackage``'s own ``composer.json``
    (Composer installs it automatically) and its Set
-   (:file:`Configuration/Sets/Sitepackage`) declares ``conn/base``'s Set
-   as a dependency, so you never need to list ``conn/base`` yourself; it
+   (:file:`Configuration/Sets/Sitepackage`) declares ``conn/t3kit-base``'s Set
+   as a dependency, so you never need to list ``conn/t3kit-base`` yourself; it
    loads automatically whenever ``conn/t3kit-sitepackage`` does.
 
    ``conn/t3kit-elements`` is genuinely optional — the sitepackage works
