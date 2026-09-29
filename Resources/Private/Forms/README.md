@@ -166,9 +166,12 @@ settings from `conn/t3kit-base` (Site Management → Settings):
 | Header background    | `theme.light.navBg`                            | `#ffffff`           |
 | Header text/title    | `theme.light.navText`                          | `#000000`           |
 
-A local logo path is rendered via `f:uri.image` (scaled to 120px height,
-shown at 60px for retina) as an absolute URL on the sending site; a full
-`https://…` value is used as-is. The site name (header wordmark, footer,
+The logo path is resolved exactly like the website navbar does
+(`conn:resolvePath` from `conn/t3kit-base`) and made absolute with the
+sending site's scheme+host; a full `https://…` value is used as-is. An EXT:
+path that doesn't exist resolves to nothing, so the header falls back to the
+site name instead of failing the submission. Prefer PNG for email logos —
+Gmail and several Outlook versions don't render SVG. The site name (header wordmark, footer,
 copyright) is the site's `websiteTitle` (language-level first, then
 site-level), falling back to `$GLOBALS['TYPO3_CONF_VARS']['SYS']['sitename']`.
 All of this needs the request, so mails sent from CLI/scheduler fall back

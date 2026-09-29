@@ -5,6 +5,7 @@
     xmlns:o="urn:schemas-microsoft-com:office:office"
     xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
     xmlns:core="http://typo3.org/ns/TYPO3/CMS/Core/ViewHelpers"
+    xmlns:conn="http://typo3.org/ns/Connetation/T3kitBase/ViewHelpers"
 >
 <head>
     <!--[if gte mso 15]>
@@ -439,17 +440,25 @@
                             <tbody>
                             <tr>
                                 <td valign="top" class="image" align="center" style="padding: 0px 36px; padding-bottom: 20px; text-align: center;">
-                                    <!-- Local logo (fileadmin/EXT: path) is scaled to 2× display height and made an
-                                         absolute URL on the sending site. A full https:// URL in branding.logo is
-                                         used as-is. A finisher's `logoUrl` variable wins over the site setting. -->
-                                    <f:variable name="logoSetting" value="{siteSettings.branding.logo}" />
+                                    <!-- branding.logo is resolved like the website navbar does (conn:resolvePath from
+                                         conn/t3kit-base: EXT:/fileadmin path or URL, '' when an EXT: path doesn't exist,
+                                         so a broken setting falls back to the site name instead of failing the mail).
+                                         Root-relative results get the sending site's scheme+host prepended, since mail
+                                         clients need absolute URLs. A finisher's `logoUrl` variable wins over the setting. -->
                                     <f:variable name="emailLogo" value="" />
                                     <f:if condition="{logoUrl}">
                                         <f:then><f:variable name="emailLogo" value="{logoUrl}" /></f:then>
-                                        <f:else if="{logoSetting}">
-                                            <f:if condition="{f:format.case(value: '{logoSetting -> f:format.crop(maxCharacters: 4, append: \'\')}', mode: 'lower')} == 'http'">
-                                                <f:then><f:variable name="emailLogo" value="{logoSetting}" /></f:then>
-                                                <f:else><f:variable name="emailLogo" value="{f:uri.image(src: '{logoSetting -> f:format.trim(characters: \'/\', side: \'left\')}', height: '120', absolute: 1)}" /></f:else>
+                                        <f:else if="{siteSettings.branding.logo}">
+                                            <f:variable name="resolvedLogo" value="{conn:resolvePath(path: siteSettings.branding.logo)}" />
+                                            <f:variable name="logoPrefix" value="{resolvedLogo -> f:format.crop(maxCharacters: 2, append: '', respectWordBoundaries: false, respectHtml: false)}" />
+                                            <f:if condition="{logoPrefix} == '//'">
+                                                <f:then><f:variable name="emailLogo" value="https:{resolvedLogo}" /></f:then>
+                                                <f:else if="{resolvedLogo -> f:format.crop(maxCharacters: 1, append: '', respectWordBoundaries: false, respectHtml: false)} == '/'">
+                                                    <f:if condition="{normalizedParams.requestHost}">
+                                                        <f:variable name="emailLogo" value="{normalizedParams.requestHost}{resolvedLogo}" />
+                                                    </f:if>
+                                                </f:else>
+                                                <f:else><f:variable name="emailLogo" value="{resolvedLogo}" /></f:else>
                                             </f:if>
                                         </f:else>
                                     </f:if>
