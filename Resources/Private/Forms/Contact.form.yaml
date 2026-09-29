@@ -15,7 +15,8 @@ finishers:
         # TODO (per project): replace with the real recipient(s) before going live.
         contact@example.com: 'Recipient Name'
       senderAddress: noreply@example.com
-      senderName: 'Sender Name'
+      # Empty = site's websiteTitle (EmailFinisherSenderNameEventListener); set a value to override.
+      senderName: ''
       replyToRecipients:
         '{email}': '{first_name} {last_name}'
       addHtmlPart: true

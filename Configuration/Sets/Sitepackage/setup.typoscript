@@ -26,3 +26,12 @@ lib.contentElement {
     partialRootPaths.50  = EXT:conn_t3kit_sitepackage/Resources/Private/Partials/
     layoutRootPaths.50   = EXT:conn_t3kit_sitepackage/Resources/Private/Layouts/
 }
+
+# News sitemap (georgringer/news-sitemap set): the set declares news.sitemap.additionalWhere
+# but doesn't pass it on to the provider. Example site setting to exclude news marked
+# "noindex" in cs_seo (config/sites/<site>/settings.yaml):
+#   news.sitemap.additionalWhere: "uid NOT IN (SELECT uid_foreign FROM tx_csseo_domain_model_meta WHERE tablenames = 'tx_news_domain_model_news' AND no_index = 1 AND deleted = 0)"
+# Guarded so sites without that set (or with the setting empty) get no provider-less "news" sitemap entry.
+[site("settings") && site("settings").get("news.sitemap.additionalWhere")]
+    plugin.tx_seo.config.xmlSitemap.sitemaps.news.config.additionalWhere = {$news.sitemap.additionalWhere}
+[END]

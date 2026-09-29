@@ -8,3 +8,6 @@ dependencies:
   - baschte/content-animations-fluid-styles-content
   - typo3/email
 hidden: true
+# Loaded before this set when the site uses it, so setup.typoscript can extend its news sitemap config.
+optionalDependencies:
+  - georgringer/news-sitemap

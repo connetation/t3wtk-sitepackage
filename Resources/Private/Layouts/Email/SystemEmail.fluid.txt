@@ -1,8 +1,8 @@
-<f:spaceless><f:render section="Title" optional="true" />
+<f:variable name="siteName" value="{f:if(condition: request.attributes.site.configuration.websiteTitle, then: request.attributes.site.configuration.websiteTitle, else: typo3.sitename)}" /><f:if condition="{request.attributes.language.websiteTitle}"><f:variable name="siteName" value="{request.attributes.language.websiteTitle}" /></f:if><f:spaceless><f:render section="Title" optional="true" />
 <f:render section="Main" /></f:spaceless>
 
-This email was sent by {typo3.sitename} from URL: {normalizedParams.siteUrl}
+This email was sent automatically by {siteName}<f:if condition="{normalizedParams.siteUrl}"> ({normalizedParams.siteUrl})</f:if>.
 
-Please contact your site administrator if you feel you received this email by accident.
+Please contact us if you feel you received this email by accident.
 
-© <f:format.date format="Y">now</f:format.date> {typo3.sitename}. All rights reserved.
+© <f:format.date date="now" format="Y" /> {siteName}. All rights reserved.

@@ -156,9 +156,26 @@ templates for free — unlike a plain per-project sitepackage, no manual
 `sk-verband.at` project had to add `email.templateRootPaths` etc. by hand;
 here it's a Set default instead).
 
-By default the layout shows the site name as a text wordmark on a neutral
-dark header. To use a real logo/brand color for one finisher without
-touching the layout file, pass them as `variables` on that finisher:
+The header follows the website header automatically, driven by the site
+settings from `conn/t3kit-base` (Site Management → Settings):
+
+| Email element        | Site setting                                   | Fallback            |
+|----------------------|------------------------------------------------|---------------------|
+| Logo                 | `branding.logo` (EXT:/fileadmin path or https URL) | site name as text |
+| Logo alt text        | `branding.logoAlt`                             | site name           |
+| Header background    | `theme.light.navBg`                            | `#ffffff`           |
+| Header text/title    | `theme.light.navText`                          | `#000000`           |
+
+A local logo path is rendered via `f:uri.image` (scaled to 120px height,
+shown at 60px for retina) as an absolute URL on the sending site; a full
+`https://…` value is used as-is. The site name (header wordmark, footer,
+copyright) is the site's `websiteTitle` (language-level first, then
+site-level), falling back to `$GLOBALS['TYPO3_CONF_VARS']['SYS']['sitename']`.
+All of this needs the request, so mails sent from CLI/scheduler fall back
+to the defaults above.
+
+To override the logo/brand color for one finisher only, pass them as
+`variables` on that finisher — they win over the site settings:
 
 ```yaml
 options:
@@ -167,11 +184,19 @@ options:
     brandColor: '#c31924'
 ```
 
-For something that should apply site-wide (every email, not just one
-finisher), edit `Resources/Private/Layouts/Email/SystemEmail.fluid.html`
-directly instead — e.g. reference `{site.settings.branding.logo}` if you
-also assign a `site` variable via `options.variables`, since FluidEmail
-does not expose it automatically.
+Link colors in the email body are hardcoded in the layout's `<style>` block
+(`#1f5aad` light / `#7daae8` dark) — edit
+`Resources/Private/Layouts/Email/SystemEmail.fluid.html` directly to match
+the project's brand.
+
+### Sender name
+
+`senderName` set on an email finisher in the form YAML is used as-is. When
+it is empty, `Classes/EventListener/EmailFinisherSenderNameEventListener.php`
+fills it with the site's `websiteTitle` (language-level first, then
+site-level), falling back to `$GLOBALS['TYPO3_CONF_VARS']['SYS']['sitename']`.
+This applies to every email finisher of every form — no per-form config.
+`Contact.form.yaml` ships with `senderName: ''` so it follows the site.
 
 ## Reference: the fields this pattern was extracted from
 

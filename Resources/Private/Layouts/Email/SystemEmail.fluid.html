@@ -408,16 +408,30 @@
     <table align="center" border="0" cellpadding="0" cellspacing="0" height="100%" width="100%" id="bodyTable"><tr><td align="center" valign="top" id="bodyCell">
         <table border="0" cellpadding="0" cellspacing="0" width="100%">
 
-            <!-- Project branding: pass `variables: {logoUrl: ..., brandColor: ...}` on a
-                 finisher's options to override the defaults below without touching this
-                 file — see conn/t3kit-sitepackage's Resources/Private/Forms/README.md. -->
-            <f:variable name="backgroundColor">{f:if(condition: brandColor, then: brandColor, else: '#343a40')}</f:variable>
+            <!-- Header follows the website header: logo = branding.logo, background =
+                 theme.light.navBg, title color = theme.light.navText (site settings).
+                 Change them in Site Management → Settings, emails follow automatically.
+                 A finisher can still override per email via `variables: {logoUrl: ..., brandColor: ...}`
+                 — see conn/t3kit-sitepackage's Resources/Private/Forms/README.md.
+                 Fallbacks (settings empty / no request, e.g. CLI mails): white header, site name as text. -->
+            <f:variable name="siteSettings" value="{request.attributes.site.settings}" />
+            <f:variable name="backgroundColor" value="{f:if(condition: siteSettings.theme.light.navBg, then: siteSettings.theme.light.navBg, else: '#ffffff')}" />
+            <f:if condition="{brandColor}">
+                <f:variable name="backgroundColor" value="{brandColor}" />
+            </f:if>
+            <f:variable name="headerTextColor" value="{f:if(condition: siteSettings.theme.light.navText, then: siteSettings.theme.light.navText, else: '#000000')}" />
+            <!-- Site name = websiteTitle from the site config (language → site), then $GLOBALS sitename. -->
+            <f:variable name="siteName" value="{f:if(condition: request.attributes.site.configuration.websiteTitle, then: request.attributes.site.configuration.websiteTitle, else: typo3.sitename)}" />
+            <f:if condition="{request.attributes.language.websiteTitle}">
+                <f:variable name="siteName" value="{request.attributes.language.websiteTitle}" />
+            </f:if>
+            <f:variable name="logoAlt" value="{f:if(condition: siteSettings.branding.logoAlt, then: siteSettings.branding.logoAlt, else: siteName)}" />
 
             <!-- HEADER START -->
             <tr><td align="center" valign="top" id="templateHeader" style="background-color: {backgroundColor}">
 
                 <!--[if (gte mso 9)|(IE)]><table align="center" border="0" cellspacing="0" cellpadding="0" width="600" style="width:600px;"><tr><td align="center" valign="top" width="600" style="width:600px;"><![endif]-->
-                <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%" class="templateContainer"><tr><td valign="top" class="headerContainer">
+                <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%" class="templateContainer"><tr><td valign="top" class="headerContainer" style="background-color: {backgroundColor};">
                     <table border="0" cellpadding="0" cellspacing="0" width="100%" class="textBlock" style="min-width:100%;"><tbody class="textBlockOuter"><tr><td valign="top" class="textBlockInner" style="padding-top:9px;">
 
                         <!--[if mso]><table align="left" border="0" cellspacing="0" cellpadding="0" width="100%" style="width:100%;"><tr><td valign="top" width="600" style="width:600px;"><![endif]-->
@@ -425,19 +439,35 @@
                             <tbody>
                             <tr>
                                 <td valign="top" class="image" align="center" style="padding: 0px 36px; padding-bottom: 20px; text-align: center;">
+                                    <!-- Local logo (fileadmin/EXT: path) is scaled to 2× display height and made an
+                                         absolute URL on the sending site. A full https:// URL in branding.logo is
+                                         used as-is. A finisher's `logoUrl` variable wins over the site setting. -->
+                                    <f:variable name="logoSetting" value="{siteSettings.branding.logo}" />
+                                    <f:variable name="emailLogo" value="" />
                                     <f:if condition="{logoUrl}">
+                                        <f:then><f:variable name="emailLogo" value="{logoUrl}" /></f:then>
+                                        <f:else if="{logoSetting}">
+                                            <f:if condition="{f:format.case(value: '{logoSetting -> f:format.crop(maxCharacters: 4, append: \'\')}', mode: 'lower')} == 'http'">
+                                                <f:then><f:variable name="emailLogo" value="{logoSetting}" /></f:then>
+                                                <f:else><f:variable name="emailLogo" value="{f:uri.image(src: '{logoSetting -> f:format.trim(characters: \'/\', side: \'left\')}', height: '120', absolute: 1)}" /></f:else>
+                                            </f:if>
+                                        </f:else>
+                                    </f:if>
+                                    <f:if condition="{emailLogo}">
                                         <f:then>
-                                            <img src="{logoUrl}" alt="{typo3.sitename}" height="41" />
+                                            <!-- Height 60 in the attribute (Outlook) AND inline style: the global
+                                                 `img { height:auto }` above would otherwise win. Width follows the ratio. -->
+                                            <img src="{emailLogo}" alt="{logoAlt}" height="60" style="display:block; margin:0 auto; height:60px; width:auto; max-width:100%;" />
                                         </f:then>
                                         <f:else>
-                                            <strong style="font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, Verdana, sans-serif; font-size: 20px; color: #ffffff;">{typo3.sitename}</strong>
+                                            <strong style="font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, Verdana, sans-serif; font-size: 20px; color: {headerTextColor};">{siteName}</strong>
                                         </f:else>
                                     </f:if>
                                 </td>
                             </tr>
                             <tr>
-                                <td valign="top" class="textContent" style="padding: 0px 36px;font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, Verdana, sans-serif;font-size: 24px;text-align: center;">
-                                    <strong><f:render section="Title" optional="true" /></strong>
+                                <td valign="top" class="textContent" style="padding: 0px 36px;font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, Verdana, sans-serif;font-size: 24px;text-align: center;color: {headerTextColor};">
+                                    <strong style="color: {headerTextColor};"><f:render section="Title" optional="true" /></strong>
                                 </td>
                             </tr>
                             </tbody>
@@ -491,10 +521,10 @@
                         <table align="left" border="0" cellpadding="0" cellspacing="0" style="max-width:100%; min-width:100%;" width="100%" class="textContentContainer"><tbody><tr><td valign="top" class="textContent" style="padding:0 36px;">
 
                             <p style="margin-top: 0;">
-                                This email was sent by <strong>{typo3.sitename}</strong> from URL: <a href="{normalizedParams.siteUrl}" target="_blank" rel="noopener">{normalizedParams.siteUrl}</a> — please contact the site administrator if you feel you received this email by accident.
+                                This email was sent automatically by <strong>{siteName}</strong><f:if condition="{normalizedParams.siteUrl}"> (<a href="{normalizedParams.siteUrl}" target="_blank" rel="noopener">{normalizedParams.httpHost}</a>)</f:if>. Please contact us if you feel you received this email by accident.
                             </p>
                             <p style="margin-top: 0;">
-                                &copy; <f:format.date format="Y">now</f:format.date> {typo3.sitename}. All rights reserved.
+                                &copy; <f:format.date date="now" format="Y" /> {siteName}. All rights reserved.
                             </p>
 
                         </td></tr></tbody></table>
