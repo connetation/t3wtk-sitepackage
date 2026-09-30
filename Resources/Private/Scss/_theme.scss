@@ -54,7 +54,10 @@
 // Applied in both light and dark modes.
 //
 // :root {
-//     --conn-radius:      0.75rem;          // Global border-radius for cards & components
+//     // Corner rounding: prefer the site setting Theme & Colors → Shape →
+//     // "Corner radius" — it scales every --conn-radius* AND Bootstrap
+//     // --bs-border-radius* token at once (via --conn-radius-scale).
+//     --conn-radius-scale: 1;               // Same as that setting in code: 0 = square … 2 = extra large
 //     --conn-card-radius: var(--conn-radius); // Cards only — override independently of --conn-radius
 //     --conn-transition:  0.2s ease-in-out;
 //     --conn-btn-color:   #fff;             // Text color on filled buttons
