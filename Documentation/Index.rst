@@ -7,10 +7,10 @@ Connetation Sitepackage
 ======================
 
 :Extension key:
-   conn_t3kit_sitepackage
+   conn_t3wtk_sitepackage
 
 :Package name:
-   conn/t3kit-sitepackage
+   connetation/t3wtk-sitepackage
 
 :Version:
    |release|
@@ -30,9 +30,9 @@ Connetation Sitepackage
 
 .. note::
 
-   Unlike `conn/t3kit-base <https://packagist.org/packages/conn/t3kit-base>`__ and
-   `conn/t3kit-elements <https://packagist.org/packages/conn/t3kit-elements>`__,
-   ``conn/t3kit-sitepackage`` is not a versioned package meant to be installed
+   Unlike `connetation/t3wtk-base <https://packagist.org/packages/connetation/t3wtk-base>`__ and
+   `connetation/t3wtk-elements <https://packagist.org/packages/connetation/t3wtk-elements>`__,
+   ``connetation/t3wtk-sitepackage`` is not a versioned package meant to be installed
    from TER/Packagist and kept up to date — it's a **starter template**.
    The intended workflow is to clone it into a new project's
    :file:`packages/` directory, wire it into the Site configuration, and
@@ -41,7 +41,7 @@ Connetation Sitepackage
    exact steps.
 
 Connetation Sitepackage is the site-specific project layer built on top
-of `conn/t3kit-base` (and optionally `conn/t3kit-elements`). This is where a single
+of `connetation/t3wtk-base` (and optionally `connetation/t3wtk-elements`). This is where a single
 project's branding, theme overrides, SEO wiring, and any project-only
 Fluid/TypoScript live — it does not carry reusable design-system logic
 itself.

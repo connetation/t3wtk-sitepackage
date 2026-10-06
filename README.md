@@ -1,20 +1,20 @@
 # Connetation Sitepackage for TYPO3 LTS 14
 
-Site-specific project layer built on top of `conn/t3kit-base` (and optionally
-`conn/t3kit-elements`). This is where a single project's branding, theme
+Site-specific project layer built on top of `connetation/t3wtk-base` (and optionally
+`connetation/t3wtk-elements`). This is where a single project's branding, theme
 overrides, SEO wiring, and any project-only Fluid/TypoScript live — it does
 not carry reusable design-system logic itself.
 
 ## Structure
 
 ```
-conn/t3kit-sitepackage/                   # TYPO3 extension (conn/t3kit-sitepackage, ext key: conn_t3kit_sitepackage)
+connetation/t3wtk-sitepackage/                   # TYPO3 extension (connetation/t3wtk-sitepackage, ext key: conn_t3wtk_sitepackage)
 ├── Classes/
 │   └── EventListener/              # PHP event listeners
 ├── Configuration/
 │   ├── CsSeo/                      # clickstorm/cs-seo config (pages/news/events), optional
 │   ├── Page/                       # Page TSconfig
-│   ├── Sets/Sitepackage/           # TYPO3 v14 Site Set — depends on conn/t3kit-base's Set
+│   ├── Sets/Sitepackage/           # TYPO3 v14 Site Set — depends on connetation/t3wtk-base's Set
 │   ├── TCA/Overrides/              # pages & tt_content TCA extensions
 │   └── Services.yaml
 ├── Resources/
@@ -33,7 +33,7 @@ conn/t3kit-sitepackage/                   # TYPO3 extension (conn/t3kit-sitepack
 
 ## Two ways to theme a site
 
-`conn/t3kit-base` exposes every design token (`--conn-*`) as a CSS custom
+`connetation/t3wtk-base` exposes every design token (`--conn-*`) as a CSS custom
 property with a built-in default. This package doesn't own the tokens —
 it overrides them, two ways, and it matters which one you reach for:
 
@@ -44,17 +44,17 @@ it overrides them, two ways, and it matters which one you reach for:
    badge colors), per-environment defaults, or overrides that should hold
    regardless of who edits site settings later.
 2. **TYPO3 Site Settings** (`config/sites/<site>/settings.yaml`, editable
-   in the backend) — driven by `conn/t3kit-base`'s `settings.definitions.yaml`
+   in the backend) — driven by `connetation/t3wtk-base`'s `settings.definitions.yaml`
    and rendered into an inline `<style>` block by
-   `EXT:conn_t3kit_base/.../Partials/Page/ThemeVars.html`. Use this for
+   `EXT:conn_t3wtk_base/.../Partials/Page/ThemeVars.html`. Use this for
    day-to-day editorial brand-color tweaks that shouldn't need a deploy.
 
 **Load order or "who wins":**
 
 ```
-1. EXT:conn_t3kit_base/Resources/Public/Css/main.css       (Bootstrap + base tokens)
-2. EXT:conn_t3kit_elements/.../<component>.css             (per-element, self-contained)
-3. EXT:conn_t3kit_sitepackage/Resources/Public/Css/main.css ← _theme.scss compiles here
+1. EXT:conn_t3wtk_base/Resources/Public/Css/main.css       (Bootstrap + base tokens)
+2. EXT:conn_t3wtk_elements/.../<component>.css             (per-element, self-contained)
+3. EXT:conn_t3wtk_sitepackage/Resources/Public/Css/main.css ← _theme.scss compiles here
 4. Page/ThemeVars.html inline <style>                ← site settings win over all of the above
 ```
 
@@ -70,10 +70,10 @@ See `_theme.scss`'s own header comment for the full breakdown and the
 
 `Resources/Private/Layouts`, `Partials`, and `Templates/Page` are empty
 scaffolding by default. Any file placed at the **same relative path** as
-one in `conn/t3kit-base` (or `conn/t3kit-elements`) silently shadows it — TYPO3
+one in `connetation/t3wtk-base` (or `connetation/t3wtk-elements`) silently shadows it — TYPO3
 resolves templates from the site's own Set/extension before falling back
 to the dependency. There's no warning when this happens, so a forked
-Layout/Partial can quietly go stale if `conn/t3kit-base` later fixes or extends
+Layout/Partial can quietly go stale if `connetation/t3wtk-base` later fixes or extends
 the original. Prefer the Scss/settings-based overrides above; only fork a
 Fluid file when the change genuinely can't be expressed through tokens or
 TypoScript.
@@ -85,7 +85,7 @@ TypoScript.
     { "type": "composer", "url": "https://composer-v2.connetation.at/" }
 ],
 "require": {
-    "conn/t3kit-sitepackage": "^1.0"
+    "connetation/t3wtk-sitepackage": "^1.0"
 }
 ```
 
@@ -93,12 +93,12 @@ In your TYPO3 site config (`config/sites/<site>/config.yaml`):
 
 ```yaml
 dependencies:
-  - conn/t3kit-sitepackage
-  - conn/t3kit-elements   # optional component library
+  - connetation/t3wtk-sitepackage
+  - connetation/t3wtk-elements   # optional component library
 ```
 
-`conn/t3kit-sitepackage`'s Set (`Configuration/Sets/Sitepackage`) declares
-`conn/t3kit-base`'s Set as a dependency — TYPO3 loads them in order.
+`connetation/t3wtk-sitepackage`'s Set (`Configuration/Sets/Sitepackage`) declares
+`connetation/t3wtk-base`'s Set as a dependency — TYPO3 loads them in order.
 
 ## Build Assets
 
@@ -108,7 +108,7 @@ deployed as-is — no build step needed on the server.
 To rebuild locally:
 
 ```bash
-cd vendor/conn/t3kit-sitepackage  # or your local development copy
+cd vendor/connetation/t3wtk-sitepackage  # or your local development copy
 npm install
 npm run build    # production build (SCSS only, no JS in this package)
 npm run dev      # watch mode
@@ -116,17 +116,17 @@ npm run dev      # watch mode
 
 ## Features
 
-- **TYPO3 LTS 14** — Site Set depending on `conn/t3kit-base`'s Set
+- **TYPO3 LTS 14** — Site Set depending on `connetation/t3wtk-base`'s Set
 - **Theme override control panel** — `_theme.scss`, see above
 - **SEO** — optional `clickstorm/cs-seo` config for pages/news/events (`Configuration/CsSeo`)
-- **PHP namespace**: `Connetation\T3kitSitepackage`
+- **PHP namespace**: `Connetation\T3wtkSitepackage`
 
 ## Extension hierarchy
 
 ```
 TYPO3 site
-├── conn/t3kit-sitepackage  (this package — project layer, extends conn/t3kit-base)
-│   └── depends on: conn/t3kit-base
-├── conn/t3kit-base         (reusable foundation — Bootstrap, layouts, design tokens)
-└── conn/t3kit-elements     (optional component library — added per project)
+├── connetation/t3wtk-sitepackage  (this package — project layer, extends connetation/t3wtk-base)
+│   └── depends on: connetation/t3wtk-base
+├── connetation/t3wtk-base         (reusable foundation — Bootstrap, layouts, design tokens)
+└── connetation/t3wtk-elements     (optional component library — added per project)
 ```

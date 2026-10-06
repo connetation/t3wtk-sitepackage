@@ -1,8 +1,8 @@
-name: conn/t3kit-sitepackage
+name: connetation/t3wtk-sitepackage
 label: 'Sitepackage'
 dependencies:
-  - conn/t3kit-base
-  - conn/t3kit-elements
+  - connetation/t3wtk-base
+  - connetation/t3wtk-elements
   - clickstorm/cs-seo
   - baschte/content-animations
   - baschte/content-animations-fluid-styles-content

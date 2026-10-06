@@ -1,23 +1,34 @@
 {
-    "name": "conn/t3kit-sitepackage",
-    "description": "Connetation Sitepackage – site-specific extension built on conn/t3kit-base for TYPO3 LTS 14",
+    "name": "connetation/t3wtk-sitepackage",
+    "version": "3.0.0",
+    "description": "Connetation Sitepackage – site-specific extension built on connetation/t3wtk-base for TYPO3 LTS 14",
     "type": "typo3-cms-extension",
     "license": "GPL-2.0-or-later",
+    "authors": [
+        {
+            "name": "Connetation Web Engineering GmbH",
+            "email": "office@connetation.at",
+            "homepage": "https://www.connetation.at/"
+        }
+    ],
     "require": {
         "typo3/cms-core": "^14.0",
         "baschte/content-animations": "^2.7",
-        "conn/t3kit-base": "^2.0.0",
-        "conn/t3kit-elements": "^2.0.0",
+        "connetation/t3wtk-base": "^3.0.0",
+        "connetation/t3wtk-elements": "^3.0.0",
         "clickstorm/cs-seo": "^10.2"
+    },
+    "replace": {
+        "conn/t3kit-sitepackage": "self.version"
     },
     "autoload": {
         "psr-4": {
-            "Connetation\\T3kitSitepackage\\": "Classes/"
+            "Connetation\\T3wtkSitepackage\\": "Classes/"
         }
     },
     "extra": {
         "typo3/cms": {
-            "extension-key": "conn_t3kit_sitepackage"
+            "extension-key": "conn_t3wtk_sitepackage"
         }
     },
     "suggest": {

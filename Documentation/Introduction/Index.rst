@@ -11,14 +11,14 @@ Introduction
 What does it do?
 =================
 
-``conn/t3kit-sitepackage`` provides:
+``connetation/t3wtk-sitepackage`` provides:
 
-- A TYPO3 v14 Site Set depending on ``conn/t3kit-base``'s Set
+- A TYPO3 v14 Site Set depending on ``connetation/t3wtk-base``'s Set
 - A theme override "control panel" (:file:`_theme.scss`) — see
   :ref:`theming`
 - Optional `clickstorm/cs-seo` configuration for pages/news/events
   (:file:`Configuration/CsSeo`)
-- PHP namespace: ``Connetation\T3kitSitepackage``
+- PHP namespace: ``Connetation\T3wtkSitepackage``
 
 .. _extension-hierarchy:
 
@@ -28,10 +28,10 @@ Extension hierarchy
 ::
 
    TYPO3 site
-   ├── conn/t3kit-sitepackage  (this package, project layer, extends conn/t3kit-base)
-   │   └── depends on: conn/t3kit-base
-   ├── conn/t3kit-base         (reusable foundation, Bootstrap, layouts, design tokens)
-   └── conn/t3kit-elements     (optional component library, added per project)
+   ├── connetation/t3wtk-sitepackage  (this package, project layer, extends connetation/t3wtk-base)
+   │   └── depends on: connetation/t3wtk-base
+   ├── connetation/t3wtk-base         (reusable foundation, Bootstrap, layouts, design tokens)
+   └── connetation/t3wtk-elements     (optional component library, added per project)
 
 .. _structure:
 
@@ -40,13 +40,13 @@ Structure
 
 ::
 
-   conn/t3kit-sitepackage/                   # TYPO3 extension (conn/t3kit-sitepackage, ext key: conn_t3kit_sitepackage)
+   connetation/t3wtk-sitepackage/                   # TYPO3 extension (connetation/t3wtk-sitepackage, ext key: conn_t3wtk_sitepackage)
    ├── Classes/
    │   └── EventListener/              # PHP event listeners
    ├── Configuration/
    │   ├── CsSeo/                      # clickstorm/cs-seo config (pages/news/events), optional
    │   ├── Page/                       # Page TSconfig
-   │   ├── Sets/Sitepackage/           # TYPO3 v14 Site Set, depends on conn/t3kit-base's Set
+   │   ├── Sets/Sitepackage/           # TYPO3 v14 Site Set, depends on connetation/t3wtk-base's Set
    │   ├── TCA/Overrides/              # pages & tt_content TCA extensions
    │   └── Services.yaml
    ├── Resources/

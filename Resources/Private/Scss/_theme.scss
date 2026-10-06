@@ -3,14 +3,14 @@
 // ════════════════════════════════════════════════════════════════
 //
 // Load order on the page:
-//   1. EXT:conn_t3kit_base/Resources/Public/Css/main.css       (Bootstrap + base tokens)
-//   2. EXT:conn_t3kit_elements|conn_wiki|conn_dashboard/.../component.css (per-element, via f:asset.css)
-//   3. EXT:conn_t3kit_sitepackage/Resources/Public/Css/main.css  ← THIS FILE
+//   1. EXT:conn_t3wtk_base/Resources/Public/Css/main.css       (Bootstrap + base tokens)
+//   2. EXT:conn_t3wtk_elements|conn_wiki|conn_dashboard/.../component.css (per-element, via f:asset.css)
+//   3. EXT:conn_t3wtk_sitepackage/Resources/Public/Css/main.css  ← THIS FILE
 //   4. Page/ThemeVars.html inline <style>                  (site settings — wins over ALL of the above)
 //
-// conn/t3kit-base's ThemeVars partial renders an inline <style> block driven by
+// connetation/t3wtk-base's ThemeVars partial renders an inline <style> block driven by
 // TYPO3 site settings (config/sites/<site>/settings.yaml, editable under
-// "Site Settings" in the backend — see conn/t3kit-base's settings.definitions.yaml
+// "Site Settings" in the backend — see connetation/t3wtk-base's settings.definitions.yaml
 // for the full list: theme.accent, theme.light.*, theme.dark.*, …). Because
 // that block is rendered in the page body — after every compiled stylesheet
 // in <head> — it wins any same-specificity tie against this file. If a
@@ -26,7 +26,7 @@
 //
 // HOW OVERRIDING WORKS
 // ─────────────────────────────────────────────────────────────────
-// conn/t3kit-base compiles Bootstrap with $primary set to the brand color.
+// connetation/t3wtk-base compiles Bootstrap with $primary set to the brand color.
 // At runtime, --conn-accent aliases --bs-primary so you have two levers:
 //
 //   Override --bs-primary → changes Bootstrap components AND conn accent simultaneously.
@@ -98,7 +98,7 @@
 
 
 // ── C. Light mode overrides ──────────────────────────────────
-// Selector matches conn/t3kit-base: [data-bs-theme="light"] and :root (no dark).
+// Selector matches connetation/t3wtk-base: [data-bs-theme="light"] and :root (no dark).
 
 // [data-bs-theme="light"],
 // :root:not([data-bs-theme="dark"]) {
@@ -195,7 +195,7 @@
 // }
 
 
-// ── F. Badge tokens (conn/dashboard) ─────────────────────────
+// ── F. Badge tokens (connetation/t3wtk-dashboard) ─────────────────────────
 // Status badge colours used by the Dashboard content element.
 
 // [data-bs-theme="light"],

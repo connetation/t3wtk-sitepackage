@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Connetation\T3kitSitepackage\EventListener;
+namespace Connetation\T3wtkSitepackage\EventListener;
 
 use Clickstorm\CsSeo\Event\ModifyEvaluationPidEvent;
 use Clickstorm\CsSeo\Utility\ConfigurationUtility;

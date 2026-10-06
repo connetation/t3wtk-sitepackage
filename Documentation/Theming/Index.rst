@@ -6,8 +6,8 @@
 Theming
 =======
 
-``conn/t3kit-base`` exposes every design token (``--conn-*``) as a CSS custom
-property with a built-in default. ``conn/t3kit-sitepackage`` doesn't own the
+``connetation/t3wtk-base`` exposes every design token (``--conn-*``) as a CSS custom
+property with a built-in default. ``connetation/t3wtk-sitepackage`` doesn't own the
 tokens — it overrides them, two ways, and it matters which one you reach
 for.
 
@@ -24,10 +24,10 @@ Two ways to theme a site
    per-environment defaults, or overrides that should hold regardless of
    who edits site settings later.
 2. **TYPO3 Site Settings** (:file:`config/sites/<site>/settings.yaml`,
-   editable in the backend) — driven by ``conn/t3kit-base``'s
+   editable in the backend) — driven by ``connetation/t3wtk-base``'s
    :file:`settings.definitions.yaml` and rendered into an inline
    ``<style>`` block by
-   :file:`EXT:conn_t3kit_base/.../Partials/Page/ThemeVars.html`. Use this for
+   :file:`EXT:conn_t3wtk_base/.../Partials/Page/ThemeVars.html`. Use this for
    day-to-day editorial brand-color tweaks that shouldn't need a deploy.
 
 .. _theming-load-order:
@@ -37,9 +37,9 @@ Load order — who wins
 
 ::
 
-   1. EXT:conn_t3kit_base/Resources/Public/Css/main.css       (Bootstrap + base tokens)
-   2. EXT:conn_t3kit_elements/.../<component>.css             (per-element, self-contained)
-   3. EXT:conn_t3kit_sitepackage/Resources/Public/Css/main.css  ← _theme.scss compiles here
+   1. EXT:conn_t3wtk_base/Resources/Public/Css/main.css       (Bootstrap + base tokens)
+   2. EXT:conn_t3wtk_elements/.../<component>.css             (per-element, self-contained)
+   3. EXT:conn_t3wtk_sitepackage/Resources/Public/Css/main.css  ← _theme.scss compiles here
    4. Page/ThemeVars.html inline <style>                 ← site settings win over all of the above
 
 ``ThemeVars`` renders in the page body, after every ``<head>``-loaded
@@ -65,11 +65,11 @@ Fluid overrides (use sparingly)
 
 .. warning::
 
-   Any file placed at the **same relative path** as one in ``conn/t3kit-base``
-   (or ``conn/t3kit-elements``) silently shadows it — TYPO3 resolves templates
+   Any file placed at the **same relative path** as one in ``connetation/t3wtk-base``
+   (or ``connetation/t3wtk-elements``) silently shadows it — TYPO3 resolves templates
    from the site's own Set/extension before falling back to the
    dependency. There is no warning when this happens, so a forked
-   Layout/Partial can quietly go stale if ``conn/t3kit-base`` later fixes or
+   Layout/Partial can quietly go stale if ``connetation/t3wtk-base`` later fixes or
    extends the original.
 
 Prefer the SCSS/settings-based overrides described above; only fork a

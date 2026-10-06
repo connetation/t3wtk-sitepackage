@@ -5,13 +5,13 @@ that makes new forms "just work": persistence path, client-side validation,
 email templates, and localization. This file documents how to extend all
 four for a new project or a new form.
 
-The generic validation engine itself lives in `conn/t3kit-base`
+The generic validation engine itself lives in `connetation/t3wtk-base`
 (`Resources/Private/JavaScript/main.js`, `initFormValidation`) since it has
-no project-specific content — everything below only touches `conn/t3kit-sitepackage`
+no project-specific content — everything below only touches `connetation/t3wtk-sitepackage`
 (or your project's own fork of it).
 
-> **This all assumes the extension key stays `conn_t3kit_sitepackage`.** Every
-> path below is a hardcoded `EXT:conn_t3kit_sitepackage/...` reference (the Form
+> **This all assumes the extension key stays `conn_t3wtk_sitepackage`.** Every
+> path below is a hardcoded `EXT:conn_t3wtk_sitepackage/...` reference (the Form
 > Set, the `email.*RootPaths` defaults in
 > `Configuration/Sets/Sitepackage/settings.definitions.yaml`, the
 > `persistenceIdentifier` a "Form" content element stores). The
@@ -19,7 +19,7 @@ no project-specific content — everything below only touches `conn/t3kit-sitepa
 > *root project's* own `composer.json` "name" — it deliberately leaves
 > `packages/sitepackage/composer.json`'s own `name`/`extension-key`
 > untouched, so these references keep resolving after project setup. If a
-> project ever renames that extension key by hand, every `EXT:conn_t3kit_sitepackage/...`
+> project ever renames that extension key by hand, every `EXT:conn_t3wtk_sitepackage/...`
 > reference in this folder needs updating to match.
 
 ## How to add a new form
@@ -39,7 +39,7 @@ config is shared by all forms in this folder.
 ## Validation
 
 Client-side validation ([just-validate](https://github.com/justvalidate/just-validate),
-bundled into `conn/t3kit-base`'s `main.js`) is entirely **data-attribute driven** —
+bundled into `connetation/t3wtk-base`'s `main.js`) is entirely **data-attribute driven** —
 it is not aware of any specific form or field, so adding one needs zero JS
 changes. It picks up any field with `[required]` and/or `[data-validate-type]`
 inside *any* `<form id="...">` on the page, using ONLY that field's own
@@ -49,20 +49,20 @@ attributes for the error text:
 properties:
   fluidAdditionalAttributes:
     required: required
-    data-validate-required-message: 'LLL:EXT:conn_t3kit_sitepackage/Resources/Private/Language/locallang_forms.xlf:contact.firstName.required'
+    data-validate-required-message: 'LLL:EXT:conn_t3wtk_sitepackage/Resources/Private/Language/locallang_forms.xlf:contact.firstName.required'
 ```
 
 ```yaml
 properties:
   fluidAdditionalAttributes:
     data-validate-type: email
-    data-validate-type-message: 'LLL:EXT:conn_t3kit_sitepackage/Resources/Private/Language/locallang_forms.xlf:contact.email.invalid'
+    data-validate-type-message: 'LLL:EXT:conn_t3wtk_sitepackage/Resources/Private/Language/locallang_forms.xlf:contact.email.invalid'
 ```
 
 Supported checks today: `required` and `data-validate-type: email`. To add a
 new check (e.g. a phone/number format), extend `initFormValidation()` in
-`conn/t3kit-base`'s `main.js` with another `if (el.dataset.validateX === ...)`
-branch — that change is generic and benefits every project on `conn/t3kit-base`,
+`connetation/t3wtk-base`'s `main.js` with another `if (el.dataset.validateX === ...)`
+branch — that change is generic and benefits every project on `connetation/t3wtk-base`,
 so it belongs there, not in a per-project form.
 
 Server-side, keep the matching EXT:form `validators` (`NotEmpty`,
@@ -70,7 +70,7 @@ Server-side, keep the matching EXT:form `validators` (`NotEmpty`,
 on submit regardless of JS.
 
 Styling: errors/success reuse `.is-invalid`/`.invalid-feedback` and
-`.is-valid`/`.valid-feedback`, already styled in conn/t3kit-base's
+`.is-valid`/`.valid-feedback`, already styled in connetation/t3wtk-base's
 `Resources/Private/Scss/components/_forms.scss` — nothing to add per form.
 
 ## Localization
@@ -89,7 +89,7 @@ per language:
 renderingOptions:
   translation:
     translationFiles:
-      - 'EXT:conn_t3kit_sitepackage/Resources/Private/Language/locallang_forms.xlf'
+      - 'EXT:conn_t3wtk_sitepackage/Resources/Private/Language/locallang_forms.xlf'
 ```
 
 Key conventions (see TYPO3\CMS\Form\Service\TranslationService::translateFormElementValue()/translateFinisherOption() for the authoritative logic):
@@ -150,14 +150,14 @@ which otherwise shows the TYPO3 logo/orange and CMS copyright text). It's
 picked up automatically, no wiring needed, because `email.templateRootPaths`
 / `layoutRootPaths` / `partialRootPaths` already point here by default (see
 `Configuration/Sets/Sitepackage/settings.definitions.yaml`). That's also why
-a NEW project built on `conn/t3kit-sitepackage` gets working (and branded) email
+a NEW project built on `connetation/t3wtk-sitepackage` gets working (and branded) email
 templates for free — unlike a plain per-project sitepackage, no manual
 `config/sites/*/settings.yaml` entry is required (compare to how the
 `sk-verband.at` project had to add `email.templateRootPaths` etc. by hand;
 here it's a Set default instead).
 
 The header follows the website header automatically, driven by the site
-settings from `conn/t3kit-base` (Site Management → Settings):
+settings from `connetation/t3wtk-base` (Site Management → Settings):
 
 | Email element        | Site setting                                   | Fallback            |
 |----------------------|------------------------------------------------|---------------------|
@@ -167,7 +167,7 @@ settings from `conn/t3kit-base` (Site Management → Settings):
 | Header text/title    | `theme.light.navText`                          | `#000000`           |
 
 The logo path is resolved exactly like the website navbar does
-(`conn:resolvePath` from `conn/t3kit-base`) and made absolute with the
+(`conn:resolvePath` from `connetation/t3wtk-base`) and made absolute with the
 sending site's scheme+host; a full `https://…` value is used as-is. An EXT:
 path that doesn't exist resolves to nothing, so the header falls back to the
 site name instead of failing the submission. Prefer PNG for email logos —

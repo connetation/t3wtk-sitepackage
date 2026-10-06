@@ -1,30 +1,30 @@
 # ─────────────────────────────────────────────
 # Sitepackage – Site-specific TypoScript
-# conn/t3kit-base TypoScript is already loaded via the
+# connetation/t3wtk-base TypoScript is already loaded via the
 # Set dependency declared in config.yaml.
 # ─────────────────────────────────────────────
 
-# Load sitepackage stylesheet after conn_t3kit_base/main.css.
+# Load sitepackage stylesheet after conn_t3wtk_base/main.css.
 # Edit Resources/Private/Scss/_theme.scss, then rebuild
 # (npm install && npm run build) to activate overrides.
 page.includeCSS {
-    conn_t3kit_sitepackage = EXT:conn_t3kit_sitepackage/Resources/Public/Css/main.css
-    conn_t3kit_sitepackage.media = all
+    conn_t3wtk_sitepackage = EXT:conn_t3wtk_sitepackage/Resources/Public/Css/main.css
+    conn_t3wtk_sitepackage.media = all
 }
 
 # Template override paths (higher index = higher priority in Fluid).
 # Place override templates in Resources/Private/Templates/Page/,
-# Partials/, or Layouts/ to replace conn_t3kit_base equivalents.
+# Partials/, or Layouts/ to replace conn_t3wtk_base equivalents.
 page.10 {
-    templateRootPaths.10 = EXT:conn_t3kit_sitepackage/Resources/Private/Templates/Page/
-    partialRootPaths.10  = EXT:conn_t3kit_sitepackage/Resources/Private/Partials/
-    layoutRootPaths.10   = EXT:conn_t3kit_sitepackage/Resources/Private/Layouts/
+    templateRootPaths.10 = EXT:conn_t3wtk_sitepackage/Resources/Private/Templates/Page/
+    partialRootPaths.10  = EXT:conn_t3wtk_sitepackage/Resources/Private/Partials/
+    layoutRootPaths.10   = EXT:conn_t3wtk_sitepackage/Resources/Private/Layouts/
 }
 
 lib.contentElement {
-    templateRootPaths.50 = EXT:conn_t3kit_sitepackage/Resources/Private/Templates/
-    partialRootPaths.50  = EXT:conn_t3kit_sitepackage/Resources/Private/Partials/
-    layoutRootPaths.50   = EXT:conn_t3kit_sitepackage/Resources/Private/Layouts/
+    templateRootPaths.50 = EXT:conn_t3wtk_sitepackage/Resources/Private/Templates/
+    partialRootPaths.50  = EXT:conn_t3wtk_sitepackage/Resources/Private/Partials/
+    layoutRootPaths.50   = EXT:conn_t3wtk_sitepackage/Resources/Private/Layouts/
 }
 
 # News sitemap (georgringer/news-sitemap set): the set declares news.sitemap.additionalWhere

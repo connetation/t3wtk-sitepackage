@@ -5,7 +5,7 @@
     xmlns:o="urn:schemas-microsoft-com:office:office"
     xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
     xmlns:core="http://typo3.org/ns/TYPO3/CMS/Core/ViewHelpers"
-    xmlns:conn="http://typo3.org/ns/Connetation/T3kitBase/ViewHelpers"
+    xmlns:conn="http://typo3.org/ns/Connetation/T3wtkBase/ViewHelpers"
 >
 <head>
     <!--[if gte mso 15]>
@@ -413,7 +413,7 @@
                  theme.light.navBg, title color = theme.light.navText (site settings).
                  Change them in Site Management → Settings, emails follow automatically.
                  A finisher can still override per email via `variables: {logoUrl: ..., brandColor: ...}`
-                 — see conn/t3kit-sitepackage's Resources/Private/Forms/README.md.
+                 — see connetation/t3wtk-sitepackage's Resources/Private/Forms/README.md.
                  Fallbacks (settings empty / no request, e.g. CLI mails): white header, site name as text. -->
             <f:variable name="siteSettings" value="{request.attributes.site.settings}" />
             <f:variable name="backgroundColor" value="{f:if(condition: siteSettings.theme.light.navBg, then: siteSettings.theme.light.navBg, else: '#ffffff')}" />
@@ -441,7 +441,7 @@
                             <tr>
                                 <td valign="top" class="image" align="center" style="padding: 0px 36px; padding-bottom: 20px; text-align: center;">
                                     <!-- branding.logo is resolved like the website navbar does (conn:resolvePath from
-                                         conn/t3kit-base: EXT:/fileadmin path or URL, '' when an EXT: path doesn't exist,
+                                         connetation/t3wtk-base: EXT:/fileadmin path or URL, '' when an EXT: path doesn't exist,
                                          so a broken setting falls back to the site name instead of failing the mail).
                                          Root-relative results get the sending site's scheme+host prepended, since mail
                                          clients need absolute URLs. A finisher's `logoUrl` variable wins over the setting. -->

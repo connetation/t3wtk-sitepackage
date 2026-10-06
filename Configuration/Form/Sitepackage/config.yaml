@@ -1,7 +1,7 @@
-name: conn/t3kit-sitepackage-form-set
+name: connetation/t3wtk-sitepackage-form-set
 label: 'Sitepackage'
 priority: 100
 persistenceManager:
   allowedExtensionPaths:
-    10: 'EXT:conn_t3kit_sitepackage/Resources/Private/Forms/'
+    10: 'EXT:conn_t3wtk_sitepackage/Resources/Private/Forms/'
   allowSaveToExtensionPaths: true
