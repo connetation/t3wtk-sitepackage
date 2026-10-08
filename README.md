@@ -1,5 +1,7 @@
 # Connetation Sitepackage for TYPO3 LTS 14
 
+> **🚀 Quickstart:** the fastest way to start a new TYPO3 14 project with `connetation/t3wtk-base`, `connetation/t3wtk-elements` and `connetation/t3wtk-sitepackage` is **[t3wtk-quickstart-shell](https://github.com/connetation/t3wtk-quickstart-shell)** — a ready-to-use DDEV project template. Clone it and run `ddev setup-project`.
+
 Site-specific project layer built on top of `connetation/t3wtk-base` and
 `connetation/t3wtk-elements`. This is where a single project's branding, theme
 overrides, SEO wiring, and any project-only Fluid/TypoScript live — it does
