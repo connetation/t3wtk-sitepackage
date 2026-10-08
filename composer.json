@@ -1,9 +1,13 @@
 {
     "name": "connetation/t3wtk-sitepackage",
-    "version": "3.0.0",
     "description": "Connetation Sitepackage – site-specific extension built on connetation/t3wtk-base for TYPO3 LTS 14",
     "type": "typo3-cms-extension",
     "license": "GPL-2.0-or-later",
+    "homepage": "https://github.com/connetation/t3wtk-sitepackage",
+    "support": {
+        "issues": "https://github.com/connetation/t3wtk-sitepackage/issues",
+        "source": "https://github.com/connetation/t3wtk-sitepackage"
+    },
     "authors": [
         {
             "name": "Connetation Web Engineering GmbH",

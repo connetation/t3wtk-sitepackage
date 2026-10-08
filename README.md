@@ -86,14 +86,13 @@ TypoScript.
 
 ## Installation
 
-```json
-"repositories": [
-    { "type": "composer", "url": "https://composer-v2.connetation.at/" }
-],
-"require": {
-    "connetation/t3wtk-sitepackage": "^3.0"
-}
+```bash
+composer require connetation/t3wtk-sitepackage
 ```
+
+Classic (non-Composer) installations can install the extension `conn_t3wtk_sitepackage` from the [TYPO3 Extension Repository](https://extensions.typo3.org/extension/conn_t3wtk_sitepackage).
+
+For new projects, the sitepackage is meant to be used as a starter template (clone it and make it your own) — see the [Installation documentation](Documentation/Installation/Index.rst).
 
 In your TYPO3 site config (`config/sites/<site>/config.yaml`):
 

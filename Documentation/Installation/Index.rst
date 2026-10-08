@@ -23,7 +23,7 @@ Use it as a starter template (recommended for new projects)
    project-local, path-based TYPO3 extensions, as opposed to
    :file:`vendor/`, which holds Composer-registry packages)::
 
-      git clone <sitepackage-repository-url> packages/<your-site-key>
+      git clone https://github.com/connetation/t3wtk-sitepackage.git packages/<your-site-key>
 
    Then detach it from the template's git history so your project tracks
    its own history from here on, not the template's::
@@ -103,16 +103,13 @@ Alternative: install a fixed version from a Composer registry
 If you specifically want a project to stay centrally updated from a
 shared upstream sitepackage (uncommon — most projects should fork via the
 template workflow above), it can also be installed like a normal Composer
-package::
+package from Packagist::
 
-   {
-       "repositories": [
-           { "type": "composer", "url": "https://composer-v2.connetation.at/" }
-       ],
-       "require": {
-           "connetation/t3wtk-sitepackage": "^3.0"
-       }
-   }
+   composer require connetation/t3wtk-sitepackage
+
+Classic mode (non-Composer) installations can install the extension
+``conn_t3wtk_sitepackage`` from the
+`TYPO3 Extension Repository <https://extensions.typo3.org/extension/conn_t3wtk_sitepackage>`__.
 
 Be aware this couples your project to upstream releases of a package
 whose entire purpose is to hold project-specific customizations — the two
