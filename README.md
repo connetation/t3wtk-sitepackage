@@ -1,7 +1,7 @@
 # Connetation Sitepackage for TYPO3 LTS 14
 
-Site-specific project layer built on top of `connetation/t3wtk-base` (and optionally
-`connetation/t3wtk-elements`). This is where a single project's branding, theme
+Site-specific project layer built on top of `connetation/t3wtk-base` and
+`connetation/t3wtk-elements`. This is where a single project's branding, theme
 overrides, SEO wiring, and any project-only Fluid/TypoScript live — it does
 not carry reusable design-system logic itself.
 
@@ -10,22 +10,28 @@ not carry reusable design-system logic itself.
 ```
 connetation/t3wtk-sitepackage/                   # TYPO3 extension (connetation/t3wtk-sitepackage, ext key: conn_t3wtk_sitepackage)
 ├── Classes/
-│   └── EventListener/              # PHP event listeners
+│   ├── EventListener/              # PHP event listeners (cs_seo record PIDs, email sender name)
+│   └── Upgrades/                   # Upgrade wizards (extension key rename)
 ├── Configuration/
-│   ├── CsSeo/                      # clickstorm/cs-seo config (pages/news/events), optional
+│   ├── CsSeo/                      # clickstorm/cs-seo config (pages/news/events)
+│   ├── Form/Sitepackage/           # EXT:form set config (allowed form storage path)
 │   ├── Page/                       # Page TSconfig
 │   ├── Sets/Sitepackage/           # TYPO3 v14 Site Set — depends on connetation/t3wtk-base's Set
 │   ├── TCA/Overrides/              # pages & tt_content TCA extensions
 │   └── Services.yaml
 ├── Resources/
 │   ├── Private/
-│   │   ├── Layouts/                # Fluid layout overrides (empty by default — see below)
+│   │   ├── Forms/                  # EXT:form definitions (Contact.form.yaml) — see Forms/README.md
+│   │   ├── Language/               # locallang_forms.xlf (+ de.)
+│   │   ├── Layouts/                # Fluid layout overrides; Email/SystemEmail = branded email layout
 │   │   ├── Partials/               # Fluid partial overrides (empty by default — see below)
 │   │   ├── Scss/                   # Theme override control panel (_theme.scss) + project styles
-│   │   └── Templates/Page/         # Fluid page template overrides (empty by default)
+│   │   └── Templates/
+│   │       ├── Email/              # Email templates (ContactForm.fluid.html/.txt)
+│   │       └── Page/               # Fluid page template overrides (empty by default)
 │   └── Public/
 │       ├── Css/main.css            # Compiled — committed to git
-│       └── Icons/                  # Project-specific icons
+│       └── Icons/                  # Extension icon + project logos
 ├── composer.json
 ├── ext_emconf.php
 └── package.json                    # Node build tooling (SCSS only)
@@ -68,9 +74,9 @@ See `_theme.scss`'s own header comment for the full breakdown and the
 
 ## Fluid overrides (use sparingly)
 
-`Resources/Private/Layouts`, `Partials`, and `Templates/Page` are empty
-scaffolding by default. Any file placed at the **same relative path** as
-one in `connetation/t3wtk-base` (or `connetation/t3wtk-elements`) silently shadows it — TYPO3
+`Resources/Private/Partials` and `Templates/Page` are empty scaffolding by
+default (`Layouts` only ships the email layout under `Layouts/Email`). Any
+file placed at the **same relative path** as one in `connetation/t3wtk-base` (or `connetation/t3wtk-elements`) silently shadows it — TYPO3
 resolves templates from the site's own Set/extension before falling back
 to the dependency. There's no warning when this happens, so a forked
 Layout/Partial can quietly go stale if `connetation/t3wtk-base` later fixes or extends
@@ -85,7 +91,7 @@ TypoScript.
     { "type": "composer", "url": "https://composer-v2.connetation.at/" }
 ],
 "require": {
-    "connetation/t3wtk-sitepackage": "^1.0"
+    "connetation/t3wtk-sitepackage": "^3.0"
 }
 ```
 
@@ -94,11 +100,22 @@ In your TYPO3 site config (`config/sites/<site>/config.yaml`):
 ```yaml
 dependencies:
   - connetation/t3wtk-sitepackage
-  - connetation/t3wtk-elements   # optional component library
 ```
 
 `connetation/t3wtk-sitepackage`'s Set (`Configuration/Sets/Sitepackage`) declares
-`connetation/t3wtk-base`'s Set as a dependency — TYPO3 loads them in order.
+the Sets of `connetation/t3wtk-base`, `connetation/t3wtk-elements`,
+`clickstorm/cs-seo`, `baschte/content-animations` and `typo3/email` as
+dependencies — TYPO3 loads them in order, so they don't need to be listed
+in the site config.
+
+### Upgrading from 1.x / 2.x
+
+3.0 renamed the Composer package (`conn/t3kit-sitepackage` →
+`connetation/t3wtk-sitepackage`) and the extension key (`conn_sitepackage`
+in 1.x, `conn_t3kit_sitepackage` in 2.x → `conn_t3wtk_sitepackage`).
+Update the `require` entry and the site `dependencies`, then run the upgrade wizards (Admin Tools → Upgrade) so
+existing Form content elements point at the new `EXT:conn_t3wtk_sitepackage/`
+form path.
 
 ## Build Assets
 
@@ -118,15 +135,15 @@ npm run dev      # watch mode
 
 - **TYPO3 LTS 14** — Site Set depending on `connetation/t3wtk-base`'s Set
 - **Theme override control panel** — `_theme.scss`, see above
-- **SEO** — optional `clickstorm/cs-seo` config for pages/news/events (`Configuration/CsSeo`)
+- **SEO** — `clickstorm/cs-seo` config for pages, plus news/events when `georgringer/news` / `derhansen/sf_event_mgt` are installed (`Configuration/CsSeo`)
+- **Forms** — example contact form, client-side validation, branded email templates (see [`Resources/Private/Forms/README.md`](Resources/Private/Forms/README.md))
 - **PHP namespace**: `Connetation\T3wtkSitepackage`
 
 ## Extension hierarchy
 
 ```
 TYPO3 site
-├── connetation/t3wtk-sitepackage  (this package — project layer, extends connetation/t3wtk-base)
-│   └── depends on: connetation/t3wtk-base
-├── connetation/t3wtk-base         (reusable foundation — Bootstrap, layouts, design tokens)
-└── connetation/t3wtk-elements     (optional component library — added per project)
+└── connetation/t3wtk-sitepackage  (this package — project layer)
+    ├── depends on: connetation/t3wtk-base      (reusable foundation — Bootstrap, layouts, design tokens)
+    └── depends on: connetation/t3wtk-elements  (component library)
 ```

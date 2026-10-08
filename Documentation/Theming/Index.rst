@@ -16,7 +16,7 @@ for.
 Two ways to theme a site
 ==========================
 
-1. **:file:`Resources/Private/Scss/_theme.scss`** — a fully-commented
+1. :file:`Resources/Private/Scss/_theme.scss` — a fully-commented
    "control panel". Uncomment a section, edit the value, rebuild.
    Requires a deploy. Use it for tokens with no site-setting equivalent
    (``--conn-content-max``, ``--conn-card-radius``, the
@@ -60,8 +60,9 @@ the ``--bs-primary`` vs ``--conn-accent`` decoupling notes.
 Fluid overrides (use sparingly)
 ==================================
 
-:file:`Resources/Private/Layouts`, :file:`Partials`, and
-:file:`Templates/Page` are empty scaffolding by default.
+:file:`Resources/Private/Partials` and :file:`Templates/Page` are empty
+scaffolding by default (:file:`Layouts` only ships the email layout under
+:file:`Layouts/Email`).
 
 .. warning::
 

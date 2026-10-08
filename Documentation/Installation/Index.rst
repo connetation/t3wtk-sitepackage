@@ -52,17 +52,23 @@ Use it as a starter template (recommended for new projects)
    works on two projects side by side. Update:
 
    - :file:`composer.json` — ``name`` and ``extra.typo3/cms.extension-key``
-   - :file:`ext_emconf.php` — the extension key it's registered under
-   - PHP namespace ``Connetation\T3wtkSitepackage`` in
-     :file:`Classes/EventListener/RecordEvaluationPidEventListener.php`
-     and the ``autoload.psr-4`` entry in :file:`composer.json`
+   - :file:`ext_emconf.php` — ``title``/``description``
+   - :file:`Configuration/Sets/Sitepackage/config.yaml` — the Set ``name``
+     (and every site's ``dependencies`` entry that references it)
+   - PHP namespace ``Connetation\T3wtkSitepackage`` in every class under
+     :file:`Classes/`, in :file:`Configuration/Services.yaml`, and the
+     ``autoload.psr-4`` entry in :file:`composer.json`
    - The extension key ``conn_t3wtk_sitepackage`` referenced in:
      :file:`ext_localconf.php`,
      :file:`Configuration/Sets/Sitepackage/setup.typoscript`,
      :file:`Configuration/Sets/Sitepackage/settings.definitions.yaml`,
      :file:`Configuration/Form/Sitepackage/config.yaml`,
-     :file:`Configuration/CsSeo/config.yaml`, and
-     :file:`Resources/Private/Forms/Contact.form.yaml`
+     :file:`Configuration/CsSeo/config.yaml`,
+     :file:`Resources/Private/Forms/Contact.form.yaml`,
+     :file:`Resources/Private/Language/*.xlf`, and
+     :file:`Resources/Private/Scss/_theme.scss` (comments only)
+   - Delete :file:`Classes/Upgrades/RenameExtensionKeyInFlexFormUpdate.php`
+     — it only migrates installations of this package's own older keys
 
    If you'd rather keep the shared name for now and rename later, that's
    fine too — nothing breaks by leaving it as ``connetation/t3wtk-sitepackage`` for a
@@ -73,20 +79,15 @@ Use it as a starter template (recommended for new projects)
 
       dependencies:
         - connetation/t3wtk-sitepackage
-        - connetation/t3wtk-elements   # optional, but recommended: content elements library
 
-   ``connetation/t3wtk-base`` is a **hard requirement** of ``connetation/t3wtk-sitepackage`` — it's
-   already declared in ``connetation/t3wtk-sitepackage``'s own ``composer.json``
-   (Composer installs it automatically) and its Set
-   (:file:`Configuration/Sets/Sitepackage`) declares ``connetation/t3wtk-base``'s Set
-   as a dependency, so you never need to list ``connetation/t3wtk-base`` yourself; it
-   loads automatically whenever ``connetation/t3wtk-sitepackage`` does.
-
-   ``connetation/t3wtk-elements`` is genuinely optional — the sitepackage works
-   without it — but recommended for any project that needs ready-made
-   content elements (cards, sliders, teasers, etc.) rather than building
-   them from scratch. Add it to ``dependencies`` above only if you want
-   it.
+   ``connetation/t3wtk-base``, ``connetation/t3wtk-elements``,
+   ``clickstorm/cs-seo`` and ``baschte/content-animations`` are **hard
+   requirements** of ``connetation/t3wtk-sitepackage`` — they're declared
+   in its own ``composer.json`` (Composer installs them automatically) and
+   its Set (:file:`Configuration/Sets/Sitepackage`) declares their Sets
+   (plus ``typo3/email``) as dependencies, so you never need to list them
+   yourself; they load automatically whenever
+   ``connetation/t3wtk-sitepackage`` does.
 
 #. Build the assets and you're set to go::
 
@@ -106,10 +107,10 @@ package::
 
    {
        "repositories": [
-           { "type": "composer", "url": "<your-composer-repository-url>" }
+           { "type": "composer", "url": "https://composer-v2.connetation.at/" }
        ],
        "require": {
-           "connetation/t3wtk-sitepackage": "^1.0"
+           "connetation/t3wtk-sitepackage": "^3.0"
        }
    }
 
