@@ -1,6 +1,7 @@
 {
     "name": "connetation/t3wtk-sitepackage",
-    "description": "Connetation Sitepackage – site-specific extension built on connetation/t3wtk-base for TYPO3 LTS 14",
+    "description": "Sitepackage template for projects built with the Connetation TYPO3 Web Toolkit (T3WTK). Holds theme overrides, forms, branded email templates and SEO configuration. All project-specific customization lives here, so base and elements stay updatable.",
+    "keywords": ["TYPO3", "TYPO3 CMS", "extension", "t3wtk", "toolkit", "sitepackage", "theme", "design system", "content elements", "bootstrap", "site sets", "dark mode"],
     "type": "typo3-cms-extension",
     "license": "GPL-2.0-or-later",
     "homepage": "https://github.com/connetation/t3wtk-sitepackage",

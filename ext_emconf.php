@@ -7,7 +7,7 @@
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
+ * the Free Software Foundation, either version 2 of the License, or
  * (at your option) any later version.
  *
  * This program is distributed in the hope that it will be useful,
@@ -21,12 +21,12 @@
 
 $EM_CONF[$_EXTKEY] = [
     'title' => 'Connetation TYPO3 Web Toolkit: Sitepackage',
-    'description' => 'Site-specific TYPO3 LTS 14 extension built on connetation/t3wtk-base',
+    'description' => 'Sitepackage template for projects built with the Connetation TYPO3 Web Toolkit (T3WTK). Holds theme overrides, forms, branded email templates and SEO configuration. All project-specific customization lives here, so base and elements stay updatable.',
     'category' => 'templates',
     'author' => 'Connetation Web Engineering GmbH',
     'author_email' => 'office@connetation.at',
     'state' => 'stable',
-    'version' => '3.1.2',
+    'version' => '3.1.3',
     'constraints' => [
         'depends' => [
             'typo3'               => '14.0.0-14.99.99',
